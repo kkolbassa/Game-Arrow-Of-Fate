@@ -1,5 +1,7 @@
 package org.example.blocks;
 
-public abstract class Block {
-    private String name;
+import org.example.Component;
+
+public abstract class Block implements Component {
+    protected String name;
 }
