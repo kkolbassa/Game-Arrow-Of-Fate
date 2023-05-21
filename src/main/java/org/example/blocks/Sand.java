@@ -4,8 +4,4 @@ public class Sand extends Block{
     public Sand() {
         this.name ="Песок";
     }
-    @Override
-    public void getInfo() {
-
-    }
 }

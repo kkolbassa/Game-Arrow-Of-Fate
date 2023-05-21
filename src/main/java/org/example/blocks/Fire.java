@@ -11,7 +11,12 @@ public class Fire extends CountableBlock{
     }
 
     @Override
-    public void getInfo() {
+    public boolean hasFire() {
+        return true;
+    }
 
+    @Override
+    public void buildFire() {
+        setCount(getCount()+1);
     }
 }

@@ -9,9 +9,4 @@ public class Stamp extends CountableBlock{
         super(count);
         this.name = name;
     }
-    @Override
-    public void getInfo() {
-
-
-    }
 }

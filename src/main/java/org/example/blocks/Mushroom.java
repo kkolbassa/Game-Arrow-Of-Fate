@@ -9,8 +9,4 @@ public class Mushroom extends CountableBlock{
         super(count);
         this.name = name;
     }
-    @Override
-    public void getInfo() {
-
-    }
 }

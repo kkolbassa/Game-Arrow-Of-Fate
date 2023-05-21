@@ -5,8 +5,4 @@ public class MixedForest extends Region{
         setName("Смешанный лес");
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

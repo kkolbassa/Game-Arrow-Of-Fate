@@ -14,4 +14,5 @@ public abstract class CountableBlock extends Block{
     public void setCount(int count) {
         this.count = count;
     }
+
 }

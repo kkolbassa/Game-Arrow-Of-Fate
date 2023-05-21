@@ -10,7 +10,14 @@ public class Tree extends CountableBlock{
         this.name = name;
     }
     @Override
-    public void getInfo() {
-
+    public boolean hasTree() {
+        if(getCount()!=0) return true;
+        else return false;
     }
+
+    @Override
+    public void cutTree() {
+        setCount(getCount()-1);
+    }
+
 }

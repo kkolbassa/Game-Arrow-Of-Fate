@@ -10,8 +10,4 @@ public class Flower extends CountableBlock{
         this.name = name;
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

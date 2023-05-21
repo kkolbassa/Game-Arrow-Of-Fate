@@ -11,7 +11,12 @@ public class House extends CountableBlock{
     }
 
     @Override
-    public void getInfo() {
+    public void buildHouse() {
+        setCount(getCount()+1);
+    }
 
+    @Override
+    public boolean hasHouse() {
+        return true;
     }
 }

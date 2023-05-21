@@ -5,8 +5,4 @@ public class Desert extends Region{
         setName("Пустыня");
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

@@ -1,11 +1,11 @@
 package org.example.regions;
 
-import org.example.Component;
+import org.example.ComponentRegion;
 import org.example.objectsOfInteerest.ObjectOfInterest;
 
 import java.util.ArrayList;
 
-public abstract class Region implements Component {
+public abstract class Region implements ComponentRegion {
     private ArrayList<ObjectOfInterest> objectsOfInterest;
     private String name;
 
@@ -18,6 +18,13 @@ public abstract class Region implements Component {
     }
     public void addObjectsOfInterest(ObjectOfInterest objectsOfInterest) {
         this.objectsOfInterest.add(objectsOfInterest);
+    }
+    @Override
+    public boolean hasTree() {
+        for (ComponentRegion objectOfInterest : objectsOfInterest) {
+            if(objectOfInterest.hasTree()) return true;
+        }
+        return false;
     }
 
     public String getName() {

@@ -5,6 +5,13 @@ import org.example.regions.MixedForest;
 import org.example.regions.Region;
 
 public class MixedForestFactory extends RegionFactory{
+    private static RegionFactory instance;
+    public static MixedForestFactory getInstance() {
+        if (instance == null) {
+            instance = new MixedForestFactory();
+        }
+        return (MixedForestFactory) instance;
+    }
     public MixedForestFactory() {
         factories.add(MeadowFactory.getInstance());
         factories.add(ForestFactory.getInstance());

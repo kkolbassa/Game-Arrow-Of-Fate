@@ -11,8 +11,4 @@ public class Animal extends CountableBlock{
         this.name = name;
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

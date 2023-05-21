@@ -6,8 +6,4 @@ public class Tundra extends Region{
         setName("Тундра");
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

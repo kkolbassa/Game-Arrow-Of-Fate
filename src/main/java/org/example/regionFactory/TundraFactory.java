@@ -6,6 +6,13 @@ import org.example.regions.Tundra;
 
 
 public class TundraFactory extends RegionFactory{
+    private static RegionFactory instance;
+    public static TundraFactory getInstance() {
+        if (instance == null) {
+            instance = new TundraFactory();
+        }
+        return (TundraFactory) instance;
+    }
     public TundraFactory() {
         factories.add(GlacierFactory.getInstance());
         factories.add(WoodlandsFactory.getInstance());

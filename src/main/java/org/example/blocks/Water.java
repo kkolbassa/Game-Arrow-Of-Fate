@@ -5,8 +5,4 @@ public class Water extends Block{
         this.name ="Вода";
     }
 
-    @Override
-    public void getInfo() {
-
-    }
 }

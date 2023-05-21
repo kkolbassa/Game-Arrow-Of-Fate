@@ -12,7 +12,8 @@ public class Resident extends CountableBlock{
     }
 
     @Override
-    public void getInfo() {
-
+    public boolean isSettlement() {
+        if(getCount()>0)return true;
+        else return false;
     }
 }
