@@ -7,8 +7,13 @@ public class GameWorld {
     private Player player = new Player();
     private Region currentRegion;
 
-    public void createWorld(int countTundra, int countMixedForest, int countDesert){
+    public Region getCurrentRegion() {
+        return currentRegion;
+    }
+
+    public void createWorld(int countTundra, int countMixedForest, int countDesert) throws Exception{
         regionsManipulation.createRegions(countTundra,countMixedForest,countDesert);
+        setCurrentRegion();
     }
     public void setCurrentRegion(){
         currentRegion = regionsManipulation.getRandomRegion();

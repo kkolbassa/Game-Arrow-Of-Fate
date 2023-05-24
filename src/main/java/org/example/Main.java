@@ -12,14 +12,15 @@ import org.example.regions.Region;
 
 public class Main {
     public static void main(String[] args) {
+        new Program().setVisible(true);
         /*RegionFactory factory = new DesertFactory();
         Region tundra = factory.create();
-        tundra.getName();*/
+        tundra.getName();
         ObjectOfInterestFactory factory1= new VillageFactory();
         ObjectOfInterest forest = factory1.create();
         boolean a = forest.hasHouse();
         System.out.println(a);
         forest.buildHouse();
-        System.out.println(a);
+        System.out.println(a);*/
     }
 }
