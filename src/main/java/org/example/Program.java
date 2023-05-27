@@ -14,11 +14,13 @@ import javax.swing.*;
 public class Program extends javax.swing.JFrame {
 
     private GameWorld gameWorld = new GameWorld();
-    private TextEditor textEditor;
+    private TextEditorGameWorld textEditorGameWorld;
+    private TextEditorMap textEditorMap;
 
     public Program() {
         initComponents();
-        textEditor = new TextEditor(jLabelCurrentRegion,jLabelImageCurrentRegion,jTableCurrentRegion,jListMap);
+        textEditorGameWorld = new TextEditorGameWorld(jLabelCurrentRegion,jLabelImageCurrentRegion,jTableCurrentRegion);
+        textEditorMap = new TextEditorMap(jListMap);
     }
 
     /**
@@ -84,70 +86,64 @@ public class Program extends javax.swing.JFrame {
         javax.swing.GroupLayout jDialogChooseRegionLayout = new javax.swing.GroupLayout(jDialogChooseRegion.getContentPane());
         jDialogChooseRegion.getContentPane().setLayout(jDialogChooseRegionLayout);
         jDialogChooseRegionLayout.setHorizontalGroup(
-            jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTundra)
-                    .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
-                        .addGap(0, 118, Short.MAX_VALUE)
-                        .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelMixedForest))
-                        .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogChooseRegionLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140)))
-                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelDesert)
-                    .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
-            .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jLabelCountRegion)
-                .addGap(0, 0, Short.MAX_VALUE))
+                jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelTundra)
+                                        .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                                .addGap(0, 118, Short.MAX_VALUE)
+                                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabelMixedForest))
+                                                .addGap(79, 79, 79))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogChooseRegionLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(140, 140, 140)))
+                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabelDesert)
+                                        .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47))
+                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(jLabelCountRegion)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
         jDialogChooseRegionLayout.setVerticalGroup(
-            jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabelCountRegion)
-                .addGap(72, 72, 72)
-                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTundra)
-                    .addComponent(jLabelMixedForest)
-                    .addComponent(jLabelDesert))
-                .addGap(18, 18, 18)
-                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabelCountRegion)
+                                .addGap(72, 72, 72)
+                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelTundra)
+                                        .addComponent(jLabelMixedForest)
+                                        .addComponent(jLabelDesert))
+                                .addGap(18, 18, 18)
+                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
         );
 
         jLabelCurrentRegion.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
 
+        jTableCurrentRegion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTableCurrentRegion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object [][] {
 
-            },
-            new String [] {
-                "Объект интереса", "Параметры"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
+                },
+                new String [] {
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+                }
+        ));
+        jTableCurrentRegion.getTableHeader().setReorderingAllowed(false);
         jScrollPaneRegions.setViewportView(jTableCurrentRegion);
 
         jButtonCutTree.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -193,57 +189,57 @@ public class Program extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanelGameLayout = new javax.swing.GroupLayout(jPanelGame);
         jPanelGame.setLayout(jPanelGameLayout);
         jPanelGameLayout.setHorizontalGroup(
-            jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPaneRegions, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelImageCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelGameLayout.createSequentialGroup()
-                        .addComponent(jButtonCutTree)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBuildHouse)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBuildFire)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExitGame)))
-                .addContainerGap(86, Short.MAX_VALUE))
-            .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(317, 317, 317)
-                .addComponent(jLabelCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonMap)
-                .addGap(39, 39, 39))
+                jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGameLayout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPaneRegions, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelImageCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanelGameLayout.createSequentialGroup()
+                                                .addComponent(jButtonCutTree)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonBuildHouse)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonBuildFire)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jButtonExitGame)))
+                                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGroup(jPanelGameLayout.createSequentialGroup()
+                                .addGap(317, 317, 317)
+                                .addComponent(jLabelCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonMap)
+                                .addGap(39, 39, 39))
         );
         jPanelGameLayout.setVerticalGroup(
-            jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonMap, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                    .addComponent(jLabelCurrentRegion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(48, 48, 48)
-                .addComponent(jLabelImageCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneRegions, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCutTree, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuildHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuildFire, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGameLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButtonMap, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                                        .addComponent(jLabelCurrentRegion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabelImageCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPaneRegions, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButtonCutTree, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonBuildHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonBuildFire, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jFrameGameLayout = new javax.swing.GroupLayout(jFrameGame.getContentPane());
         jFrameGame.getContentPane().setLayout(jFrameGameLayout);
         jFrameGameLayout.setHorizontalGroup(
-            jFrameGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                jFrameGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jFrameGameLayout.setVerticalGroup(
-            jFrameGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                jFrameGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabelMap.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -275,39 +271,39 @@ public class Program extends javax.swing.JFrame {
         javax.swing.GroupLayout jDialogMapLayout = new javax.swing.GroupLayout(jDialogMap.getContentPane());
         jDialogMap.getContentPane().setLayout(jDialogMapLayout);
         jDialogMapLayout.setHorizontalGroup(
-            jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogMapLayout.createSequentialGroup()
-                .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialogMapLayout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(jLabelMap))
-                    .addGroup(jDialogMapLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPaneMap, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelImageMap, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDialogMapLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jButtonChooseCurrentRegion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonCloseMap)
-                                .addGap(11, 11, 11)))))
-                .addGap(60, 78, Short.MAX_VALUE))
+                jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogMapLayout.createSequentialGroup()
+                                .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jDialogMapLayout.createSequentialGroup()
+                                                .addGap(253, 253, 253)
+                                                .addComponent(jLabelMap))
+                                        .addGroup(jDialogMapLayout.createSequentialGroup()
+                                                .addGap(96, 96, 96)
+                                                .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jScrollPaneMap, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabelImageMap, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(jDialogMapLayout.createSequentialGroup()
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(jButtonChooseCurrentRegion)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(jButtonCloseMap)
+                                                                .addGap(11, 11, 11)))))
+                                .addGap(60, 78, Short.MAX_VALUE))
         );
         jDialogMapLayout.setVerticalGroup(
-            jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogMapLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelMap)
-                .addGap(28, 28, 28)
-                .addComponent(jLabelImageMap, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPaneMap, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonChooseCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCloseMap, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogMapLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelMap)
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabelImageMap, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPaneMap, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jDialogMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButtonChooseCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonCloseMap, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -325,42 +321,42 @@ public class Program extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanelStartGameLayout = new javax.swing.GroupLayout(jPanelStartGame);
         jPanelStartGame.setLayout(jPanelStartGameLayout);
         jPanelStartGameLayout.setHorizontalGroup(
-            jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStartGameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
-            .addGroup(jPanelStartGameLayout.createSequentialGroup()
-                .addGroup(jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelStartGameLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jLabelImageGame, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelStartGameLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabelGame)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStartGameLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(258, 258, 258))
+                        .addGroup(jPanelStartGameLayout.createSequentialGroup()
+                                .addGroup(jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelStartGameLayout.createSequentialGroup()
+                                                .addGap(83, 83, 83)
+                                                .addComponent(jLabelImageGame, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanelStartGameLayout.createSequentialGroup()
+                                                .addGap(277, 277, 277)
+                                                .addComponent(jLabelGame)))
+                                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanelStartGameLayout.setVerticalGroup(
-            jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelStartGameLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabelGame)
-                .addGap(61, 61, 61)
-                .addComponent(jLabelImageGame, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                jPanelStartGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelStartGameLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabelGame)
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabelImageGame, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                                .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -382,7 +378,7 @@ public class Program extends javax.swing.JFrame {
                 jFrameGame.setVisible(rootPaneCheckingEnabled);
                 jFrameGame.setSize(1018, 809);
 
-                textEditor.updateCurrentRegion(gameWorld.getCurrentRegion());
+                textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
             }
 
         } catch (Exception e) {
@@ -419,15 +415,35 @@ public class Program extends javax.swing.JFrame {
     }
 
     private void jButtonCutTreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCutTreeActionPerformed
+        try{
+            int chooseObject = jTableCurrentRegion.getSelectedRow();
+            gameWorld.cutTree(chooseObject);
+            textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButtonCutTreeActionPerformed
 
     private void jButtonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuildHouseActionPerformed
-        // TODO add your handling code here:
+        try{
+            int chooseObject = jTableCurrentRegion.getSelectedRow();
+            gameWorld.buildHouse(chooseObject);
+            textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonBuildHouseActionPerformed
 
     private void jButtonBuildFireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuildFireActionPerformed
-        // TODO add your handling code here:
+        try{
+            int chooseObject = jTableCurrentRegion.getSelectedRow();
+            gameWorld.buildFire(chooseObject);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
+        }
     }//GEN-LAST:event_jButtonBuildFireActionPerformed
 
     private void jButtonExitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitGameActionPerformed
@@ -445,11 +461,7 @@ public class Program extends javax.swing.JFrame {
     private void jButtonCloseMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseMapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCloseMapActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuildFire;
     private javax.swing.JButton jButtonBuildHouse;

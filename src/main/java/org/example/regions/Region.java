@@ -4,6 +4,7 @@ import org.example.ComponentRegion;
 import org.example.objectsOfInteerest.ObjectOfInterest;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public abstract class Region implements ComponentRegion {
     private ArrayList<ObjectOfInterest> objectsOfInterest;
@@ -12,6 +13,9 @@ public abstract class Region implements ComponentRegion {
     public ArrayList<ObjectOfInterest> getObjectsOfInterest() {
         return objectsOfInterest;
     }
+    public ObjectOfInterest getObjectOfInterest(int index) {
+        return objectsOfInterest.get(index);
+    }
 
     public void setObjectsOfInterest(ArrayList<ObjectOfInterest> objectsOfInterest) {
         this.objectsOfInterest = objectsOfInterest;
@@ -19,12 +23,13 @@ public abstract class Region implements ComponentRegion {
     public void addObjectsOfInterest(ObjectOfInterest objectsOfInterest) {
         this.objectsOfInterest.add(objectsOfInterest);
     }
-    @Override
-    public boolean hasTree() {
-        for (ComponentRegion objectOfInterest : objectsOfInterest) {
-            if(objectOfInterest.hasTree()) return true;
-        }
-        return false;
+
+    public LinkedHashMap<String, String> getInfo2Table() {
+        LinkedHashMap<String, String> table = new LinkedHashMap<>();
+        objectsOfInterest.forEach(objectOfInterest -> {
+            table.put(objectOfInterest.getName(),objectOfInterest.getInfo2Table());
+        });
+        return table;
     }
 
     public String getName() {
@@ -33,5 +38,10 @@ public abstract class Region implements ComponentRegion {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void removeObjectOfInterest(int chooseObject) throws Exception {
+        objectsOfInterest.remove(chooseObject);
+        throw new Exception("Упс! Выбранный объект сгорел!");
     }
 }

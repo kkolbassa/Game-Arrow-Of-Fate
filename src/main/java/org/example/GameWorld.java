@@ -15,11 +15,21 @@ public class GameWorld {
         regionsManipulation.createRegions(countTundra,countMixedForest,countDesert);
         setCurrentRegion();
     }
-    public void setCurrentRegion(){
+    private void setCurrentRegion(){
         currentRegion = regionsManipulation.getRandomRegion();
     }
     public void changeCurrentRegion(){
 
     }
+    public void cutTree(int chooseObject) throws Exception {
+        player.tryCutTree(currentRegion, chooseObject);
+    }
 
+    public void buildHouse(int chooseObject) throws Exception {
+        player.buildHouse(currentRegion, chooseObject);
+    }
+
+    public void buildFire(int chooseObject) throws Exception {
+        player.tryBuildFire(currentRegion, chooseObject);
+    }
 }

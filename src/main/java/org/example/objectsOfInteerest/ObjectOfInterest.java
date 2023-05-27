@@ -1,5 +1,6 @@
 package org.example.objectsOfInteerest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.example.ComponentObjectOfInterest;
 import org.example.ComponentRegion;
 import org.example.blocks.Block;
@@ -20,16 +21,25 @@ public abstract class ObjectOfInterest implements ComponentRegion, ComponentObje
     public void setBlocks(ArrayList<Block> blocks) {
         this.blocks = blocks;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean hasTree() {
 
-        for (ComponentRegion block : blocks) {
+        for (ComponentObjectOfInterest block : blocks) {
             if(block.hasTree()) return true;
         }
         return false;
     }
 
-    public void cutTree() {
+    public void cutTree(){
         for (ComponentObjectOfInterest block : blocks) {
             block.cutTree();
         }
@@ -53,36 +63,41 @@ public abstract class ObjectOfInterest implements ComponentRegion, ComponentObje
     }
 
     @Override
+    public void buildFire() throws Exception {
+        if(!isSettlement()) addFire();
+        else throw new Exception("В населенных пунктах костер разводить нельзя!");
+    }
+    @Override
     public boolean isSettlement() {
         for (ComponentObjectOfInterest block : blocks) {
             if(block.isSettlement()) return true;
         }
         return false;
     }
-
-    @Override
-    public void buildFire() {
-        if(!isSettlement()) addFire();
+    private void addFire() throws Exception {
+        if (hasFire()) createFire();
+        else blocks.add(new Fire(1));
     }
-
-    private void addFire() {
-        if(Math.random()>0.01) {
-            if (hasFire()) createFire();
-            else blocks.add(new Fire(1));
-        } else blocks = null;
-    }
-
-    private void createFire() {
-        for (ComponentObjectOfInterest block : blocks) {
-            block.buildFire();
-        }
-    }
-
     @Override
     public boolean hasFire() {
         for (ComponentObjectOfInterest block : blocks) {
             if(block.hasFire()) return true;
         }
         return false;
+    }
+    private void createFire() throws Exception {
+        for (ComponentObjectOfInterest block : blocks) {
+            block.buildFire();
+        }
+    }
+
+    @Override
+    public String getInfo2Table() {
+        String info = "";
+        for (Block block : blocks) {
+            info+= block.getInfo2Table();
+        }
+        info = StringUtils.removeEnd(info, ", ");
+        return info;
     }
 }

@@ -15,4 +15,11 @@ public abstract class CountableBlock extends Block{
         this.count = count;
     }
 
+    @Override
+    public String getInfo2Table() {
+        String info = getName();
+        if(count>0) info+= " "+ count+" шт, ";
+        else info = "";
+        return info;
+    }
 }

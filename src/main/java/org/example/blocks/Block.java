@@ -5,6 +5,20 @@ import org.example.ComponentRegion;
 
 public abstract class Block implements ComponentRegion, ComponentObjectOfInterest {
     protected String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getInfo2Table() {
+        return getName()+", ";
+    }
+
     @Override
     public boolean hasTree() {
         return false;
