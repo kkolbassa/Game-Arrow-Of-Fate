@@ -37,10 +37,10 @@ public class Program extends javax.swing.JFrame {
         jLabelDesert = new javax.swing.JLabel();
         jLabelTundra = new javax.swing.JLabel();
         jLabelMixedForest = new javax.swing.JLabel();
-        jTextFieldTundra = new javax.swing.JTextField();
         jButtonChooseRegion = new javax.swing.JButton();
-        jTextFieldDesert = new javax.swing.JTextField();
-        jTextFieldMixedForest = new javax.swing.JTextField();
+        jComboBoxTundra = new javax.swing.JComboBox<>();
+        jComboBoxMixedForest = new javax.swing.JComboBox<>();
+        jComboBoxDesert = new javax.swing.JComboBox<>();
         jFrameGame = new javax.swing.JFrame();
         jPanelGame = new javax.swing.JPanel();
         jLabelCurrentRegion = new javax.swing.JLabel();
@@ -83,34 +83,40 @@ public class Program extends javax.swing.JFrame {
             }
         });
 
+        int numbers_to_add_max = 50;
+        for (int i = 0; i <= numbers_to_add_max; i++ ) {
+            jComboBoxTundra.addItem(String.valueOf(i));
+            jComboBoxMixedForest.addItem(String.valueOf(i));
+            jComboBoxDesert.addItem(String.valueOf(i));
+        }
+
         javax.swing.GroupLayout jDialogChooseRegionLayout = new javax.swing.GroupLayout(jDialogChooseRegion.getContentPane());
         jDialogChooseRegion.getContentPane().setLayout(jDialogChooseRegionLayout);
         jDialogChooseRegionLayout.setHorizontalGroup(
                 jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(jLabelCountRegion)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelTundra)
-                                        .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                                .addComponent(jLabelTundra)
                                                 .addGap(0, 118, Short.MAX_VALUE)
                                                 .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabelMixedForest))
-                                                .addGap(79, 79, 79))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogChooseRegionLayout.createSequentialGroup()
+                                                .addGap(79, 79, 79)
+                                                .addComponent(jLabelDesert)
+                                                .addGap(47, 47, 47))
+                                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
+                                                .addComponent(jComboBoxTundra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(186, 186, 186)
+                                                .addComponent(jComboBoxMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(140, 140, 140)))
-                                .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabelDesert)
-                                        .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47))
-                        .addGroup(jDialogChooseRegionLayout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(jLabelCountRegion)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                                .addComponent(jComboBoxDesert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(57, 57, 57))))
         );
         jDialogChooseRegionLayout.setVerticalGroup(
                 jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,9 +130,9 @@ public class Program extends javax.swing.JFrame {
                                         .addComponent(jLabelDesert))
                                 .addGap(18, 18, 18)
                                 .addGroup(jDialogChooseRegionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldTundra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldDesert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBoxTundra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxMixedForest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxDesert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                                 .addComponent(jButtonChooseRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(62, 62, 62))
@@ -360,7 +366,7 @@ public class Program extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
         jDialogChooseRegion.setVisible(true);
@@ -370,46 +376,31 @@ public class Program extends javax.swing.JFrame {
     private void jButtonChooseRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseRegionActionPerformed
 
         try {
-            if(checkCountRegion()) {
                 takeCountRegions();
-                cleanTextFieldCount();
+                cleanComboBox();
 
                 jDialogChooseRegion.dispose();
                 jFrameGame.setVisible(rootPaneCheckingEnabled);
                 jFrameGame.setSize(1018, 809);
 
                 textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
-            }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonChooseRegionActionPerformed
 
-    private void cleanTextFieldCount() {
-        jTextFieldTundra.setText("");
-        jTextFieldMixedForest.setText("");
-        jTextFieldDesert.setText("");
-    }
-
-    private boolean checkCountRegion() throws Exception{
-        try {
-            Integer.parseInt(jTextFieldTundra.getText());
-            Integer.parseInt(jTextFieldMixedForest.getText());
-            Integer.parseInt(jTextFieldDesert.getText());
-            return true;
-        }catch (Exception e){
-            JOptionPane.showMessageDialog (null, "Недопустимые символы", "Oшибка", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+    private void cleanComboBox() {
+        jComboBoxTundra.setSelectedIndex(0);
+        jComboBoxMixedForest.setSelectedIndex(0);
+        jComboBoxDesert.setSelectedIndex(0);
     }
 
     private void takeCountRegions() throws Exception {
 
-        int countTundra = Integer.parseInt(jTextFieldTundra.getText());
-        int countMixedForest = Integer.parseInt(jTextFieldMixedForest.getText());
-        int countDesert = Integer.parseInt(jTextFieldDesert.getText());
+        int countTundra = jComboBoxTundra.getSelectedIndex();
+        int countMixedForest = jComboBoxMixedForest.getSelectedIndex();
+        int countDesert = jComboBoxDesert.getSelectedIndex();
 
         gameWorld.createWorld(countTundra,countMixedForest,countDesert);
     }
@@ -451,17 +442,26 @@ public class Program extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExitGameActionPerformed
 
     private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
-        // TODO add your handling code here:
+        jDialogMap.setVisible(true);
+        jDialogMap.setBounds(100, 100, 655, 560);
+        textEditorMap.setModelMap(gameWorld.getRegions());
     }//GEN-LAST:event_jButtonMapActionPerformed
 
     private void jButtonChooseCurrentRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseCurrentRegionActionPerformed
-        // TODO add your handling code here:
+        try{
+            int chooseObject = jListMap.getSelectedIndex();
+            gameWorld.changeCurrentRegion(chooseObject);
+            textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
+            jDialogMap.dispose();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonChooseCurrentRegionActionPerformed
 
     private void jButtonCloseMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseMapActionPerformed
-        // TODO add your handling code here:
+        jDialogMap.dispose();
     }//GEN-LAST:event_jButtonCloseMapActionPerformed
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuildFire;
     private javax.swing.JButton jButtonBuildHouse;
@@ -472,6 +472,9 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExitGame;
     private javax.swing.JButton jButtonMap;
     private javax.swing.JButton jButtonStartGame;
+    private javax.swing.JComboBox<String> jComboBoxDesert;
+    private javax.swing.JComboBox<String> jComboBoxMixedForest;
+    private javax.swing.JComboBox<String> jComboBoxTundra;
     private javax.swing.JDialog jDialogChooseRegion;
     private javax.swing.JDialog jDialogMap;
     private javax.swing.JFrame jFrameGame;
@@ -491,8 +494,5 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneMap;
     private javax.swing.JScrollPane jScrollPaneRegions;
     private javax.swing.JTable jTableCurrentRegion;
-    private javax.swing.JTextField jTextFieldDesert;
-    private javax.swing.JTextField jTextFieldMixedForest;
-    private javax.swing.JTextField jTextFieldTundra;
     // End of variables declaration//GEN-END:variables
 }

@@ -48,6 +48,14 @@ public abstract class Block implements ComponentRegion, ComponentObjectOfInteres
 
     @Override
     public void buildFire() {
+    }
 
+    @Override
+    public boolean stampExist() {
+        return false;
+    }
+
+    @Override
+    public void createStamp() {
     }
 }

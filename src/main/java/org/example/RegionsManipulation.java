@@ -20,10 +20,8 @@ public class RegionsManipulation {
     }
 
     private void checkCountData(int countTundra, int countMixedForest, int countDesert) throws Exception {
-
-        if(countTundra<0||countDesert<0||countMixedForest<0||(countTundra==0&&countMixedForest==0&&countDesert==0))
+        if(countTundra==0&&countMixedForest==0&&countDesert==0)
             throw new Exception("Неверно введено кол-во регионов");
-        else if(countTundra>50||countDesert>50||countMixedForest>50) throw new Exception("Превышен лимит на кол-во регионов");
     }
 
     private void createDesert(int countDesert) {
@@ -47,5 +45,13 @@ public class RegionsManipulation {
     }
     public Region getRandomRegion(){
         return regions.get((int) (Math.random()*regions.size()));
+    }
+
+    public ArrayList<Region> getRegions() {
+        return regions;
+    }
+
+    public Region getRegion(int chooseObject) {
+        return regions.get(chooseObject);
     }
 }

@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.regions.Region;
 
+import java.util.ArrayList;
+
 public class GameWorld {
     private RegionsManipulation regionsManipulation = new RegionsManipulation();
     private Player player = new Player();
@@ -18,8 +20,9 @@ public class GameWorld {
     private void setCurrentRegion(){
         currentRegion = regionsManipulation.getRandomRegion();
     }
-    public void changeCurrentRegion(){
-
+    public void changeCurrentRegion(int chooseObject) throws Exception {
+        if(chooseObject<0) throw new Exception("Регион не выбран!");
+        else currentRegion = regionsManipulation.getRegion(chooseObject);
     }
     public void cutTree(int chooseObject) throws Exception {
         player.tryCutTree(currentRegion, chooseObject);
@@ -31,5 +34,9 @@ public class GameWorld {
 
     public void buildFire(int chooseObject) throws Exception {
         player.tryBuildFire(currentRegion, chooseObject);
+    }
+
+    public ArrayList<Region> getRegions() {
+        return regionsManipulation.getRegions();
     }
 }

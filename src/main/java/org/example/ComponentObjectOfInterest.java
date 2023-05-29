@@ -8,5 +8,7 @@ public interface ComponentObjectOfInterest {
     boolean isSettlement();
     void buildFire() throws Exception;
     boolean hasFire();
+    boolean stampExist();
+    void createStamp();
     String getInfo2Table();
 }

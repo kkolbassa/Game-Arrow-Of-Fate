@@ -3,10 +3,7 @@ package org.example.objectsOfInteerest;
 import org.apache.commons.lang3.StringUtils;
 import org.example.ComponentObjectOfInterest;
 import org.example.ComponentRegion;
-import org.example.blocks.Block;
-import org.example.blocks.Fire;
-import org.example.blocks.House;
-import org.example.blocks.Tree;
+import org.example.blocks.*;
 
 import java.util.ArrayList;
 
@@ -43,6 +40,23 @@ public abstract class ObjectOfInterest implements ComponentRegion, ComponentObje
         for (ComponentObjectOfInterest block : blocks) {
             block.cutTree();
         }
+        createStamp();
+    }
+
+    @Override
+    public void createStamp() {
+        if(stampExist()) {
+            for (ComponentObjectOfInterest block : blocks) {
+                block.createStamp();
+            }
+        }else blocks.add(new Stamp(1));
+    }
+    @Override
+    public boolean stampExist() {
+        for (ComponentObjectOfInterest block : blocks) {
+            if(block.stampExist()) return true;
+        }
+        return false;
     }
 
     @Override

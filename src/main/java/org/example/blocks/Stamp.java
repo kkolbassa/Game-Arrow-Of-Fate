@@ -9,4 +9,14 @@ public class Stamp extends CountableBlock{
         super(count);
         this.name = name;
     }
+
+    @Override
+    public boolean stampExist() {
+        return true;
+    }
+
+    @Override
+    public void createStamp() {
+        setCount(getCount()+1);
+    }
 }
