@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public abstract class Region implements ComponentRegion {
+    private boolean isObjectsChanged = false;
+    private ObjectOfInterest removedObject = null;
     private ArrayList<ObjectOfInterest> objectsOfInterest;
     private String name;
 
@@ -15,6 +17,14 @@ public abstract class Region implements ComponentRegion {
     }
     public ObjectOfInterest getObjectOfInterest(int index) {
         return objectsOfInterest.get(index);
+    }
+
+    public boolean isObjectsChanged() {
+        return isObjectsChanged;
+    }
+
+    public void setObjectsChanged(boolean objectsChanged) {
+        isObjectsChanged = objectsChanged;
     }
 
     public void setObjectsOfInterest(ArrayList<ObjectOfInterest> objectsOfInterest) {
@@ -41,7 +51,13 @@ public abstract class Region implements ComponentRegion {
     }
 
     public void removeObjectOfInterest(int chooseObject) throws Exception {
+        removedObject = objectsOfInterest.get(chooseObject);
         objectsOfInterest.remove(chooseObject);
+        setObjectsChanged(true);
         throw new Exception("Упс! Выбранный объект сгорел!");
+    }
+
+    public ObjectOfInterest getRemovedObject() {
+        return removedObject;
     }
 }

@@ -21,8 +21,7 @@ public class GameWorld {
         currentRegion = regionsManipulation.getRandomRegion();
     }
     public void changeCurrentRegion(int chooseObject) throws Exception {
-        if(chooseObject<0) throw new Exception("Регион не выбран!");
-        else currentRegion = regionsManipulation.getRegion(chooseObject);
+        currentRegion = regionsManipulation.getRegion(chooseObject);
     }
     public void cutTree(int chooseObject) throws Exception {
         player.tryCutTree(currentRegion, chooseObject);

@@ -26,7 +26,11 @@ public class Player {
     public void tryBuildFire(Region currentRegion, int chooseObject) throws Exception {
         checkChooseObject(chooseObject);
         ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
-        if(Math.random()<0.01) currentRegion.removeObjectOfInterest(chooseObject);
+        double probabilityBurnObject = 0.01;
+        if(Math.random()<probabilityBurnObject) removeObjectOfInterest(currentRegion, chooseObject);
         else objectOfInterest.buildFire();
+    }
+    private void removeObjectOfInterest(Region currentRegion,int chooseObject) throws Exception {
+        currentRegion.removeObjectOfInterest(chooseObject);
     }
 }

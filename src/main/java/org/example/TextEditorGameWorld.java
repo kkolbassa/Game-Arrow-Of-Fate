@@ -4,21 +4,44 @@ import org.example.regions.Region;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.util.LinkedHashMap;
 
 public class TextEditorGameWorld {
     private JLabel jLabelCurrentRegion;
-    private JLabel jLabelImageCurrentRegion;
     private JTable jTableCurrentRegion;
-    public TextEditorGameWorld(JLabel jLabelCurrentRegion, JLabel jLabelImageCurrentRegion, JTable jTableCurrentRegion) {
+    private ImagesEditor imagesEditor;
+    private Region currentRegion = new Region() {};
+    public TextEditorGameWorld(JLabel jLabelCurrentRegion, JTable jTableCurrentRegion, ImagePanel imagePanel) {
         this.jLabelCurrentRegion = jLabelCurrentRegion;
-        this.jLabelImageCurrentRegion = jLabelImageCurrentRegion;
         this.jTableCurrentRegion = jTableCurrentRegion;
+        imagesEditor = new ImagesEditor(imagePanel);
+    }
+    public void updateCurrentRegion() {
+        updatePartInfo();
+    }
+    public void updateCurrentRegion(Region currentRegion) {
+        clean();
+        updateFullInfo(currentRegion);
     }
 
-    public void updateCurrentRegion(Region currentRegion) {
+    private void updateFullInfo(Region currentRegion) {
+        this.currentRegion =currentRegion;
         updateRegionName(currentRegion.getName());
         updateTableObjects(currentRegion.getInfo2Table());
+        createImagesInfo();
+    }
+
+    private void updatePartInfo() {
+        updateTableObjects(currentRegion.getInfo2Table());
+        if(currentRegion.isObjectsChanged()) updateImagesInfo();
+    }
+
+    private void createImagesInfo() {
+        imagesEditor.createImageRegion(currentRegion, jTableCurrentRegion);
+    }
+    private void updateImagesInfo() {
+        imagesEditor.updateImagesInfo(currentRegion,jTableCurrentRegion);
     }
 
     private void updateRegionName(String name) {
@@ -26,7 +49,16 @@ public class TextEditorGameWorld {
     }
 
     private void updateTableObjects(LinkedHashMap<String, String> currentRegion) {
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Запрещаем редактирование всех ячеек
+                return false;
+            }
+        };
+
+        jTableCurrentRegion.setRowHeight(31);
+
         model.addColumn("Объкт интереса");
         model.addColumn("Параметры");
 
@@ -34,5 +66,14 @@ public class TextEditorGameWorld {
             model.addRow(new Object[]{key, value});
         });
         jTableCurrentRegion.setModel(model);
+
+        TableColumn column = jTableCurrentRegion.getColumnModel().getColumn(1);
+        column.setPreferredWidth(500);  // Устанавливаем ширину колонки
+
+    }
+
+    public void clean() {
+        this.currentRegion = new Region() {};
+        imagesEditor.clean();
     }
 }

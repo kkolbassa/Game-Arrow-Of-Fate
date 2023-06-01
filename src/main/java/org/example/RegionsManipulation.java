@@ -51,7 +51,8 @@ public class RegionsManipulation {
         return regions;
     }
 
-    public Region getRegion(int chooseObject) {
-        return regions.get(chooseObject);
+    public Region getRegion(int chooseObject) throws Exception {
+        if(chooseObject<0) throw new Exception("Регион не выбран!");
+        else return regions.get(chooseObject);
     }
 }
