@@ -10,5 +10,8 @@ public interface ComponentObjectOfInterest {
     boolean hasFire();
     boolean stampExist();
     void createStamp();
+    boolean hasWater();
+    void buildWell() throws Exception;
+    boolean hasWell();
     String getInfo2Table();
 }

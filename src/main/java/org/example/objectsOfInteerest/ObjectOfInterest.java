@@ -114,4 +114,36 @@ public abstract class ObjectOfInterest implements ComponentRegion, ComponentObje
         info = StringUtils.removeEnd(info, ", ");
         return info;
     }
+
+    @Override
+    public boolean hasWater() {
+        for (ComponentObjectOfInterest block : blocks) {
+            if(block.hasWater()) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void buildWell() throws Exception {
+        if(hasWater()) addWell();
+        else throw new Exception("Колодцы можно строить только у воды!");
+    }
+
+    private void addWell() throws Exception {
+        if (hasWell()) createWell();
+        else blocks.add(new Well(1));
+    }
+
+    @Override
+    public boolean hasWell() {
+        for (ComponentObjectOfInterest block : blocks) {
+            if(block.hasWell()) return true;
+        }
+        return false;
+    }
+    private void createWell() throws Exception {
+        for (ComponentObjectOfInterest block : blocks) {
+            block.buildWell();
+        }
+    }
 }

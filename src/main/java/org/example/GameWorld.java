@@ -38,4 +38,8 @@ public class GameWorld {
     public ArrayList<Region> getRegions() {
         return regionsManipulation.getRegions();
     }
+
+    public void buildWell(int chooseObject) throws Exception {
+        player.buildWell(currentRegion, chooseObject);
+    }
 }

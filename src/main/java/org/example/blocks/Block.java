@@ -58,4 +58,19 @@ public abstract class Block implements ComponentRegion, ComponentObjectOfInteres
     @Override
     public void createStamp() {
     }
+
+    @Override
+    public boolean hasWater() {
+        return false;
+    }
+
+    @Override
+    public boolean hasWell() {
+        return false;
+    }
+
+    @Override
+    public void buildWell() throws Exception {
+
+    }
 }

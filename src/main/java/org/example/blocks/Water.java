@@ -5,4 +5,8 @@ public class Water extends Block{
         this.name ="Вода";
     }
 
+    @Override
+    public boolean hasWater() {
+        return true;
+    }
 }

@@ -33,4 +33,9 @@ public class Player {
     private void removeObjectOfInterest(Region currentRegion,int chooseObject) throws Exception {
         currentRegion.removeObjectOfInterest(chooseObject);
     }
+    public void buildWell(Region currentRegion, int chooseObject) throws Exception {
+        checkChooseObject(chooseObject);
+        ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
+        objectOfInterest.buildWell();
+    }
 }

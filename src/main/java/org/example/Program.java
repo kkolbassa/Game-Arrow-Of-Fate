@@ -57,6 +57,7 @@ public class Program extends javax.swing.JFrame {
         jButtonCutTree = new javax.swing.JButton();
         jButtonBuildHouse = new javax.swing.JButton();
         jButtonBuildFire = new javax.swing.JButton();
+        jButtonBuildWell = new javax.swing.JButton();
         jButtonExitGame = new javax.swing.JButton();
         jPanelGameTop = new javax.swing.JPanel();
         jButtonMap = new javax.swing.JButton();
@@ -92,7 +93,6 @@ public class Program extends javax.swing.JFrame {
                 jButtonChooseRegionActionPerformed(evt);
             }
         });
-
 
         javax.swing.GroupLayout jDialogChooseRegionLayout = new javax.swing.GroupLayout(jDialogChooseRegion.getContentPane());
         jDialogChooseRegion.getContentPane().setLayout(jDialogChooseRegionLayout);
@@ -152,9 +152,7 @@ public class Program extends javax.swing.JFrame {
 
                 }
         ));
-        jTableCurrentRegion.setFocusTraversalPolicyProvider(true);
         jTableCurrentRegion.setIntercellSpacing(new java.awt.Dimension(2, 2));
-        jTableCurrentRegion.setRowHeight(18);
         jTableCurrentRegion.getTableHeader().setReorderingAllowed(false);
         jScrollPaneRegions.setViewportView(jTableCurrentRegion);
 
@@ -190,6 +188,14 @@ public class Program extends javax.swing.JFrame {
             }
         });
 
+        jButtonBuildWell.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonBuildWell.setText("Построить колодец");
+        jButtonBuildWell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuildWellActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelGameTableLayout = new javax.swing.GroupLayout(jPanelGameTable);
         jPanelGameTable.setLayout(jPanelGameTableLayout);
         jPanelGameTableLayout.setHorizontalGroup(
@@ -200,12 +206,15 @@ public class Program extends javax.swing.JFrame {
                                         .addComponent(jScrollPaneRegions)
                                         .addGroup(jPanelGameTableLayout.createSequentialGroup()
                                                 .addComponent(jButtonCutTree)
-                                                .addGap(37, 37, 37)
+                                                .addGap(39, 39, 39)
                                                 .addComponent(jButtonBuildHouse)
-                                                .addGap(50, 50, 50)
+                                                .addGap(49, 49, 49)
                                                 .addComponent(jButtonBuildFire)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButtonExitGame)))
+                                                .addGap(42, 42, 42)
+                                                .addComponent(jButtonBuildWell)
+                                                .addGap(307, 307, 307)
+                                                .addComponent(jButtonExitGame)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
         jPanelGameTableLayout.setVerticalGroup(
@@ -213,12 +222,13 @@ public class Program extends javax.swing.JFrame {
                         .addGroup(jPanelGameTableLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPaneRegions, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(59, 59, 59)
                                 .addGroup(jPanelGameTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jButtonCutTree, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jButtonBuildHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jButtonBuildFire, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButtonExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonBuildWell, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -237,11 +247,11 @@ public class Program extends javax.swing.JFrame {
         jPanelGameTopLayout.setHorizontalGroup(
                 jPanelGameTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGameTopLayout.createSequentialGroup()
-                                .addContainerGap(448, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelCurrentRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(316, 316, 316)
+                                .addGap(290, 290, 290)
                                 .addComponent(jButtonMap)
-                                .addContainerGap())
+                                .addGap(38, 38, 38))
         );
         jPanelGameTopLayout.setVerticalGroup(
                 jPanelGameTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +274,7 @@ public class Program extends javax.swing.JFrame {
         );
         jPanelGameImageLayout.setVerticalGroup(
                 jPanelGameImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 350, Short.MAX_VALUE)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jFrameGameLayout = new javax.swing.GroupLayout(jFrameGame.getContentPane());
@@ -282,9 +292,9 @@ public class Program extends javax.swing.JFrame {
                 jFrameGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameGameLayout.createSequentialGroup()
                                 .addComponent(jPanelGameTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanelGameImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelGameImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanelGameTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -475,6 +485,16 @@ public class Program extends javax.swing.JFrame {
             textEditorGameWorld.updateCurrentRegion();
         }
     }//GEN-LAST:event_jButtonBuildFireActionPerformed
+    private void jButtonBuildWellActionPerformed(java.awt.event.ActionEvent evt) {
+        try{
+            int chooseObject = jTableCurrentRegion.getSelectedRow();
+            gameWorld.buildWell(chooseObject);
+            textEditorGameWorld.updateCurrentRegion();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     private void jButtonExitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitGameActionPerformed
         jFrameGame.dispose();
@@ -506,6 +526,7 @@ public class Program extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuildFire;
     private javax.swing.JButton jButtonBuildHouse;
+    private javax.swing.JButton jButtonBuildWell;
     private javax.swing.JButton jButtonChooseCurrentRegion;
     private javax.swing.JButton jButtonChooseRegion;
     private javax.swing.JButton jButtonCloseMap;
