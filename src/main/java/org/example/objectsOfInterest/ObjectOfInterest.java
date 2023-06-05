@@ -1,4 +1,4 @@
-package org.example.objectsOfInteerest;
+package org.example.objectsOfInterest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.example.ComponentObjectOfInterest;

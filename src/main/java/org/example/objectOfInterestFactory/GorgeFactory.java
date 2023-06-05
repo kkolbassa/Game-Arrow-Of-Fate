@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.Gorge;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Gorge;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 public class GorgeFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

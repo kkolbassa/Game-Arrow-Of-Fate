@@ -7,6 +7,7 @@ import org.example.regionFactory.TundraFactory;
 import org.example.regions.Region;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class RegionsManipulation {
     private ArrayList<Region> regions = new ArrayList<>();
@@ -17,6 +18,7 @@ public class RegionsManipulation {
         createTundra(countTundra);
         createMixedForest(countMixedForest);
         createDesert(countDesert);
+        Collections.shuffle(regions);
     }
 
     private void checkCountData(int countTundra, int countMixedForest, int countDesert) throws Exception {
@@ -39,8 +41,10 @@ public class RegionsManipulation {
         createRegion(countTundra);
     }
     private void createRegion(int count) {
+        int winMission = (int) (Math.random()*count);
         for(int i=0;i<count;i++){
-            regions.add(factory.create());
+            if(i==winMission) regions.add(factory.create(true));
+            else regions.add(factory.create(false));
         }
     }
     public Region getRandomRegion(){

@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.Glacier;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Glacier;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 public class GlacierFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

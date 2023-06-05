@@ -1,5 +1,6 @@
 package org.example.regionFactory;
 
+import org.example.missionsFactory.DesertMissionFactory;
 import org.example.objectOfInterestFactory.*;
 import org.example.regions.Desert;
 import org.example.regions.Region;
@@ -18,12 +19,14 @@ public class DesertFactory extends RegionFactory{
         factories.add(GorgeFactory.getInstance());
         factories.add(SaltMarshFactory.getInstance());
         factories.add(MountainFactory.getInstance());
+        missionFactory = DesertMissionFactory.getInstance();
     }
 
     @Override
-    public Region create() {
+    public Region create(boolean significantMission) {
         Region region = new Desert();
         fillRegion(region);
+        fillMission(region, significantMission);
         return region;
     }
 }

@@ -1,12 +1,9 @@
 package org.example;
 
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.ObjectOfInterest;
 import org.example.regions.Region;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;

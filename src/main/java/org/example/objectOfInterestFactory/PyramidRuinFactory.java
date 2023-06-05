@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.ObjectOfInterest;
-import org.example.objectsOfInteerest.PyramidRuin;
+import org.example.objectsOfInterest.ObjectOfInterest;
+import org.example.objectsOfInterest.PyramidRuin;
 
 public class PyramidRuinFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

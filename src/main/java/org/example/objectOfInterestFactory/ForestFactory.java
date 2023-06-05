@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.Forest;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Forest;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 public class ForestFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

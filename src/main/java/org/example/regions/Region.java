@@ -1,7 +1,8 @@
 package org.example.regions;
 
 import org.example.ComponentRegion;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.missions.Mission;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -11,6 +12,15 @@ public abstract class Region implements ComponentRegion {
     private ObjectOfInterest removedObject = null;
     private ArrayList<ObjectOfInterest> objectsOfInterest;
     private String name;
+    private Mission mission;
+
+    public Mission getMission() {
+        return mission;
+    }
+
+    public void setMission(Mission mission) {
+        this.mission = mission;
+    }
 
     public ArrayList<ObjectOfInterest> getObjectsOfInterest() {
         return objectsOfInterest;

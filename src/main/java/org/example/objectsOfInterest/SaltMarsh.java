@@ -1,4 +1,4 @@
-package org.example.objectsOfInteerest;
+package org.example.objectsOfInterest;
 
 public class SaltMarsh extends ObjectOfInterest{
     public SaltMarsh() {

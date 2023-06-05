@@ -3,7 +3,7 @@ package org.example.objectOfInterestFactory;
 import org.example.blocks.Block;
 import org.example.blocksFactory.BlockFactory;
 import org.example.blocksFactory.CountableBlockFactory;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 import java.util.ArrayList;
 

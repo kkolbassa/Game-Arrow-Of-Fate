@@ -1,4 +1,4 @@
-package org.example.objectsOfInteerest;
+package org.example.objectsOfInterest;
 
 public class Meadow extends ObjectOfInterest{
     public Meadow() {

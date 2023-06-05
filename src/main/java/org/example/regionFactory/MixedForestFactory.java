@@ -1,5 +1,6 @@
 package org.example.regionFactory;
 
+import org.example.missionsFactory.MixedForestMissionFactory;
 import org.example.objectOfInterestFactory.*;
 import org.example.regions.MixedForest;
 import org.example.regions.Region;
@@ -18,12 +19,14 @@ public class MixedForestFactory extends RegionFactory{
         factories.add(MountainFactory.getInstance());
         factories.add(SwampFactory.getInstance());
         factories.add(VillageFactory.getInstance());
+        missionFactory = MixedForestMissionFactory.getInstance();
     }
 
     @Override
-    public Region create() {
+    public Region create(boolean significantMission) {
         Region region = new MixedForest();
         fillRegion(region);
+        fillMission(region, significantMission);
         return region;
     }
 }

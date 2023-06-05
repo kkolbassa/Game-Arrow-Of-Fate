@@ -1,9 +1,18 @@
 package org.example;
 
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.items.Item;
+import org.example.objectsOfInterest.ObjectOfInterest;
 import org.example.regions.Region;
 
+import java.util.ArrayList;
+
 public class Player {
+    private ArrayList<Item> items = new ArrayList<>();
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public void tryCutTree(Region currentRegion, int chooseObject) throws Exception {
         checkChooseObject(chooseObject);
         cutTree(currentRegion.getObjectOfInterest(chooseObject));

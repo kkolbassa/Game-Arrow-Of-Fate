@@ -3,8 +3,8 @@ package org.example.objectOfInterestFactory;
 import org.example.blocksFactory.AnimalFactory;
 import org.example.blocksFactory.GrassFactory;
 import org.example.blocksFactory.TreeFactory;
-import org.example.objectsOfInteerest.Meadow;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Meadow;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 public class MeadowFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

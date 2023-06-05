@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.Geyser;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Geyser;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 public class GeyserFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

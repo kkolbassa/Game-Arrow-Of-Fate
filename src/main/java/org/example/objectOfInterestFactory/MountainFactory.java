@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.Mountain;
-import org.example.objectsOfInteerest.ObjectOfInterest;
+import org.example.objectsOfInterest.Mountain;
+import org.example.objectsOfInterest.ObjectOfInterest;
 
 
 public class MountainFactory extends ObjectOfInterestFactory{

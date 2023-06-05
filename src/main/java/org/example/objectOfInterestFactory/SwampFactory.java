@@ -1,8 +1,8 @@
 package org.example.objectOfInterestFactory;
 
 import org.example.blocksFactory.*;
-import org.example.objectsOfInteerest.ObjectOfInterest;
-import org.example.objectsOfInteerest.Swamp;
+import org.example.objectsOfInterest.ObjectOfInterest;
+import org.example.objectsOfInterest.Swamp;
 
 public class SwampFactory extends ObjectOfInterestFactory{
     private static ObjectOfInterestFactory instance;

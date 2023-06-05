@@ -1,5 +1,6 @@
 package org.example.regionFactory;
 
+import org.example.missionsFactory.TundraMissionFactory;
 import org.example.objectOfInterestFactory.*;
 import org.example.regions.Region;
 import org.example.regions.Tundra;
@@ -19,12 +20,14 @@ public class TundraFactory extends RegionFactory{
         factories.add(DeerCampFactory.getInstance());
         factories.add(SwampFactory.getInstance());
         factories.add(GeyserFactory.getInstance());
+        missionFactory = TundraMissionFactory.getInstance();
     }
 
     @Override
-    public Region create() {
+    public Region create(boolean significantMission) {
         Region region = new Tundra();
         fillRegion(region);
+        fillMission(region, significantMission);
         return region;
     }
 
