@@ -9,6 +9,9 @@ public class GameWorld {
     private Player player = new Player();
     private Region currentRegion;
 
+    public Player getPlayer() {
+        return player;
+    }
     public Region getCurrentRegion() {
         return currentRegion;
     }

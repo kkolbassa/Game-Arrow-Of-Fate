@@ -11,18 +11,24 @@ public class TextEditorGameWorld {
     private JLabel jLabelCurrentRegion;
     private JTable jTableCurrentRegion;
     private ImagesEditor imagesEditor;
+    private TextEditorMission textEditorMission;
     private Region currentRegion = new Region() {};
     public TextEditorGameWorld(JLabel jLabelCurrentRegion, JTable jTableCurrentRegion, ImagePanel imagePanel) {
         this.jLabelCurrentRegion = jLabelCurrentRegion;
         this.jTableCurrentRegion = jTableCurrentRegion;
         imagesEditor = new ImagesEditor(imagePanel);
     }
+    public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete){
+        textEditorMission = new TextEditorMission(description,task,progress,jLabelMissionComplete);
+    }
     public void updateCurrentRegion() {
+        textEditorMission.updateMission(currentRegion.getMission());
         updatePartInfo();
     }
     public void updateCurrentRegion(Region currentRegion) {
         clean();
         updateFullInfo(currentRegion);
+        textEditorMission.updateMission(currentRegion.getMission());
     }
 
     private void updateFullInfo(Region currentRegion) {

@@ -61,7 +61,7 @@ public class ImagesEditor {
         GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
         for (JButton button : buttonList) {
             hGroup.addComponent(button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-            hGroup.addGap(30); // Промежуток между кнопками
+            hGroup.addGap(10); // Промежуток между кнопками
 
         }
         layout.setHorizontalGroup(hGroup);

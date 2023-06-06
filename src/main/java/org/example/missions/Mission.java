@@ -1,5 +1,7 @@
 package org.example.missions;
 
+import org.example.items.Item;
+
 public abstract class Mission {
     private String description;
     private String task;
@@ -15,14 +17,10 @@ public abstract class Mission {
         progress = 0;
         complete = false;
     }
-    public void incrementProgress() {
-        progress++;
-        if (progress >= countAction) {
-            completeMission();
-            complete = true;
-        }
+    public void notifyMission(String action){
+        if(task.equals(action)) progress++;
+        if(progress>=countAction) complete = true;
     }
-    public abstract void completeMission();
 
     public String getDescription() {
         return description;
@@ -37,4 +35,13 @@ public abstract class Mission {
         return progress;
     }
 
+    public boolean isSignificant() {
+        return significant;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public abstract Item getReward();
 }
