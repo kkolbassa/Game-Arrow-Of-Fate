@@ -1,10 +1,13 @@
-package org.example;
+package org.example.editors;
 
+import org.example.ImagePanel;
+import org.example.Player;
 import org.example.regions.Region;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class TextEditorGameWorld {
@@ -12,14 +15,22 @@ public class TextEditorGameWorld {
     private JTable jTableCurrentRegion;
     private ImagesEditor imagesEditor;
     private TextEditorMission textEditorMission;
+    private TextEditorMap textEditorMap;
+    private TextEditorBag textEditorBag;
     private Region currentRegion = new Region() {};
     public TextEditorGameWorld(JLabel jLabelCurrentRegion, JTable jTableCurrentRegion, ImagePanel imagePanel) {
         this.jLabelCurrentRegion = jLabelCurrentRegion;
         this.jTableCurrentRegion = jTableCurrentRegion;
         imagesEditor = new ImagesEditor(imagePanel);
     }
-    public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete){
-        textEditorMission = new TextEditorMission(description,task,progress,jLabelMissionComplete);
+    public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete, Player player, JButton jButtonFinishGame){
+        textEditorMission = new TextEditorMission(description,task,progress,jLabelMissionComplete,player, jButtonFinishGame);
+    }
+    public void createTextEditorMap(JList jListMap){
+        textEditorMap = new TextEditorMap(jListMap);
+    }
+    public void createTextEditorBag(JList jListItems) {
+        textEditorBag = new TextEditorBag(jListItems);
     }
     public void updateCurrentRegion() {
         textEditorMission.updateMission(currentRegion.getMission());
@@ -29,6 +40,10 @@ public class TextEditorGameWorld {
         clean();
         updateFullInfo(currentRegion);
         textEditorMission.updateMission(currentRegion.getMission());
+    }
+    public void updateCurrentRegion(Region currentRegion, ArrayList<Region> regions) {
+        textEditorMission.setSignificantMissions(regions);
+        updateCurrentRegion(currentRegion);
     }
 
     private void updateFullInfo(Region currentRegion) {
@@ -58,7 +73,6 @@ public class TextEditorGameWorld {
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                // Запрещаем редактирование всех ячеек
                 return false;
             }
         };
@@ -74,12 +88,20 @@ public class TextEditorGameWorld {
         jTableCurrentRegion.setModel(model);
 
         TableColumn column = jTableCurrentRegion.getColumnModel().getColumn(1);
-        column.setPreferredWidth(500);  // Устанавливаем ширину колонки
+        column.setPreferredWidth(500);
 
     }
 
     public void clean() {
         this.currentRegion = new Region() {};
         imagesEditor.clean();
+    }
+
+    public void setModelMap(ArrayList<Region> regions, Region currentRegion) {
+        textEditorMap.setModelMap(regions,currentRegion);
+    }
+
+    public void setModelMap(Player player) {
+        textEditorBag.setModelMap(player);
     }
 }

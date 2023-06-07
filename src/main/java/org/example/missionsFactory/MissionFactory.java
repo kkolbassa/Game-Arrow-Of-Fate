@@ -9,11 +9,11 @@ import java.util.List;
 
 public abstract class MissionFactory {
     protected MissionExcelReader missionExcelReader = new MissionExcelReader();
-    protected ArrayList<MissionData> missionData;
+    protected static ArrayList<MissionData> missionData;
     protected List<MissionData> filteredMissions;
 
     public MissionFactory() {
-        missionData = missionExcelReader.createMissionsFromExcel();
+        if(missionData == null) missionData = missionExcelReader.createMissionsFromExcel();
     }
 
     public abstract Mission create(boolean significant);

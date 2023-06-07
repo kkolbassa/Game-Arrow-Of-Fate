@@ -1,5 +1,6 @@
-package org.example;
+package org.example.editors;
 
+import org.example.Player;
 import org.example.items.Item;
 
 import javax.swing.*;

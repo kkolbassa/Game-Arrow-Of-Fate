@@ -1,4 +1,4 @@
-package org.example;
+package org.example.editors;
 
 import org.example.regions.Region;
 

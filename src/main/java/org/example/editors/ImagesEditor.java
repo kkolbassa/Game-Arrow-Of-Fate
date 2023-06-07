@@ -1,5 +1,6 @@
-package org.example;
+package org.example.editors;
 
+import org.example.ImagePanel;
 import org.example.objectsOfInterest.ObjectOfInterest;
 import org.example.regions.Region;
 
@@ -53,11 +54,9 @@ public class ImagesEditor {
         button.setContentAreaFilled(false);
     }
     private void setButtonsLocation() {
-        // Создаем GroupLayout для панели
         GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
 
-        // Создаем горизонтальную группу
         GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
         for (JButton button : buttonList) {
             hGroup.addComponent(button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
@@ -66,7 +65,6 @@ public class ImagesEditor {
         }
         layout.setHorizontalGroup(hGroup);
 
-        // Создаем вертикальную группу
         GroupLayout.ParallelGroup vGroup = layout.createParallelGroup();
         for (JButton button : buttonList) {
             vGroup.addComponent(button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
@@ -75,22 +73,6 @@ public class ImagesEditor {
     }
 
     private void setButtonAction(JButton button, ObjectOfInterest objectOfInterest, JTable jTableCurrentRegion){
-        /*button.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                // Получаем размеры изображения
-                ImageIcon icon = (ImageIcon) button.getIcon();
-                Image image = icon.getImage();
-                int imageWidth = image.getWidth(null);
-                int imageHeight = image.getHeight(null);
-
-                // Масштабируем кнопку, чтобы соответствовать размерам изображения с сохранением пропорций
-                int buttonWidth = button.getWidth();
-                int buttonHeight = (int) (buttonWidth * ((double) imageHeight / imageWidth));
-                button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-            }
-        });*/
-
         button.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -135,7 +117,6 @@ public class ImagesEditor {
     private void updateButtonsList(ObjectOfInterest changedObject) {
         panel.remove(getButton(changedObject));  // Удаляем кнопку из панели
         buttonList.remove(getButton(changedObject));
-
     }
 
     private int getButton(ObjectOfInterest countObject) {

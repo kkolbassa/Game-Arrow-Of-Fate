@@ -6,7 +6,7 @@ import java.awt.*;
 public class ImagePanel extends JPanel {
     private Image backgroundImage;
 
-    protected void setBackgroundImage(ImageIcon imageIcon) {
+    public void setBackgroundImage(ImageIcon imageIcon) {
         this.backgroundImage = imageIcon.getImage();
         repaint();
     }

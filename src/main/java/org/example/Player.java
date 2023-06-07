@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Item> items = new ArrayList<>();
-
     public ArrayList<Item> getItems() {
         return items;
     }
@@ -36,8 +35,13 @@ public class Player {
         }
     }
     private void checkMissionComplete(Mission mission) {
-        if(mission.isComplete()) items.add(mission.getReward());
+        if(mission.isComplete()) checkReward(mission.getReward());
     }
+
+    private void checkReward(Item reward) {
+        if(reward != null) items.add(reward);
+    }
+
     public void buildHouse(Region currentRegion, int chooseObject) throws Exception {
         checkChooseObject(chooseObject);
         ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);

@@ -5,6 +5,9 @@
  */
 package org.example;
 
+import org.example.editors.TextEditorGameWorld;
+import org.example.missionsFactory.TundraMissionFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,16 +20,11 @@ public class Program extends javax.swing.JFrame {
 
     private GameWorld gameWorld = new GameWorld();
     private TextEditorGameWorld textEditorGameWorld;
-    private TextEditorMap textEditorMap;
-    private TextEditorBag textEditorBag;
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public Program() {
         initComponents();
-        textEditorGameWorld = new TextEditorGameWorld(jLabelCurrentRegion,jTableCurrentRegion, jPanelGameImage);
-        textEditorMap = new TextEditorMap(jListMap);
-        textEditorBag = new TextEditorBag(jListItems);
-        textEditorGameWorld.createTextEditorMission(jTextAreaDesription, jLabelTask, jLabelTaskProgress,jLabelMissionComplete);
+        initGameWorld();
         int numbers_to_add_max = 50;
         for (int i = 0; i <= numbers_to_add_max; i++ ) {
             jComboBoxTundra.addItem(String.valueOf(i));
@@ -36,6 +34,26 @@ public class Program extends javax.swing.JFrame {
         jLabelImageGame.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/Логотип.png")));
         jTableCurrentRegion.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLocation(this);
+
+        jTextAreaDesription.setEditable(false);
+        jTextAreaDesription.setLineWrap(true);
+        jTextAreaDesription.setWrapStyleWord(true);
+        jTextAreaDesription.setBorder(null);
+        jTextAreaDesription.setFont(new java.awt.Font("Segoe UI", 0, 18));
+
+        // Прозрачный задний фон
+        jTextAreaDesription.setOpaque(false);
+        jTextAreaDesription.setBackground(new java.awt.Color(0, 0, 0, 0));
+
+        new TundraMissionFactory();
+    }
+
+    private void initGameWorld() {
+        textEditorGameWorld = new TextEditorGameWorld(jLabelCurrentRegion,jTableCurrentRegion, jPanelGameImage);
+        textEditorGameWorld.createTextEditorMap(jListMap);
+        textEditorGameWorld.createTextEditorBag(jListItems);
+        textEditorGameWorld.createTextEditorMission(jTextAreaDesription, jLabelTask, jLabelTaskProgress,jLabelMissionComplete, gameWorld.getPlayer(),jButtonFinishGame);
+        jButtonFinishGame.setVisible(false);
     }
 
     /**
@@ -78,6 +96,7 @@ public class Program extends javax.swing.JFrame {
         jLabelTaskName = new javax.swing.JLabel();
         jLabelMissionComplete = new javax.swing.JLabel();
         jLabelTask = new javax.swing.JLabel();
+        jButtonFinishGame = new javax.swing.JButton();
         jDialogMap = new javax.swing.JDialog();
         jLabelMap = new javax.swing.JLabel();
         jScrollPaneMap = new javax.swing.JScrollPane();
@@ -248,7 +267,7 @@ public class Program extends javax.swing.JFrame {
                                         .addComponent(jButtonBuildFire, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jButtonBuildWell, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jButtonExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jButtonMap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -328,6 +347,15 @@ public class Program extends javax.swing.JFrame {
 
         jLabelTask.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
+        jButtonFinishGame.setBackground(new java.awt.Color(204, 0, 204));
+        jButtonFinishGame.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonFinishGame.setText("Закончить приключение");
+        jButtonFinishGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinishGameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelMissionLayout = new javax.swing.GroupLayout(jPanelMission);
         jPanelMission.setLayout(jPanelMissionLayout);
         jPanelMissionLayout.setHorizontalGroup(
@@ -340,23 +368,26 @@ public class Program extends javax.swing.JFrame {
                                                 .addGap(0, 100, Short.MAX_VALUE))
                                         .addGroup(jPanelMissionLayout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(jScrollPaneMission)))
+                                                .addComponent(jScrollPaneMission))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(jPanelMissionLayout.createSequentialGroup()
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(jLabelTaskName))
+                                                        .addComponent(jLabelTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabelTaskProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelTaskProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelMissionComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37))
-                        .addGroup(jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
-                                        .addContainerGap(108, Short.MAX_VALUE)
-                                        .addComponent(jLabelTaskName)
-                                        .addGap(91, 91, 91)))
+                                .addGroup(jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
+                                                .addComponent(jLabelMissionComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(38, 38, 38))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
+                                                .addComponent(jButtonFinishGame)
+                                                .addGap(50, 50, 50))))
         );
         jPanelMissionLayout.setVerticalGroup(
                 jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,18 +396,17 @@ public class Program extends javax.swing.JFrame {
                                 .addComponent(jLabelMission, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPaneMission, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelTaskName, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelTaskProgress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelTask, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(43, 43, 43)
+                                        .addComponent(jLabelTask, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelTaskProgress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
                                 .addComponent(jLabelMissionComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128))
-                        .addGroup(jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelMissionLayout.createSequentialGroup()
-                                        .addGap(336, 336, 336)
-                                        .addComponent(jLabelTaskName, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(358, Short.MAX_VALUE)))
+                                .addGap(67, 67, 67)
+                                .addComponent(jButtonFinishGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout jFrameGameLayout = new javax.swing.GroupLayout(jFrameGame.getContentPane());
@@ -402,7 +432,7 @@ public class Program extends javax.swing.JFrame {
                                 .addComponent(jPanelGameImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanelGameTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jPanelMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabelMap.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -578,6 +608,9 @@ public class Program extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
+        gameWorld = new GameWorld();
+        initGameWorld();
+
         jDialogChooseRegion.setVisible(true);
         jDialogChooseRegion.setBounds(0, 100, 645, 399);
         setLocation(jDialogChooseRegion);
@@ -589,7 +622,7 @@ public class Program extends javax.swing.JFrame {
                 takeCountRegions();
                 cleanComboBox();
 
-                textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion());
+                textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion(),gameWorld.getRegions());
                 jDialogChooseRegion.dispose();
                 jFrameGame.setVisible(rootPaneCheckingEnabled);
                 jFrameGame.setSize(1490, 770);
@@ -659,15 +692,13 @@ public class Program extends javax.swing.JFrame {
 
     private void jButtonExitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitGameActionPerformed
         jFrameGame.dispose();
-        gameWorld = new GameWorld();
-        textEditorGameWorld.clean();
     }//GEN-LAST:event_jButtonExitGameActionPerformed
 
     private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
         jDialogMap.setVisible(true);
         jDialogMap.setBounds(100, 100, 655, 560);
         setLocation(jDialogMap);
-        textEditorMap.setModelMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
+        textEditorGameWorld.setModelMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
     }//GEN-LAST:event_jButtonMapActionPerformed
 
     private void jButtonChooseCurrentRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseCurrentRegionActionPerformed
@@ -685,7 +716,7 @@ public class Program extends javax.swing.JFrame {
         jDialogMap.dispose();
     }//GEN-LAST:event_jButtonCloseMapActionPerformed
     private void jButtonBagActionPerformed(java.awt.event.ActionEvent evt) {
-        textEditorBag.setModelMap(gameWorld.getPlayer());
+        textEditorGameWorld.setModelMap(gameWorld.getPlayer());
         jDialogBag.setVisible(true);
         jDialogBag.setBounds(100, 100, 570, 470);
         setLocation(jDialogBag);
@@ -693,6 +724,9 @@ public class Program extends javax.swing.JFrame {
 
     private void jButtonItemsOkActionPerformed(java.awt.event.ActionEvent evt) {
         jDialogBag.dispose();
+    }
+    private void jButtonFinishGameActionPerformed(java.awt.event.ActionEvent evt) {
+        jFrameGame.dispose();
     }
 
     private void setLocation(JFrame frame){
@@ -717,7 +751,6 @@ public class Program extends javax.swing.JFrame {
         // Установка позиции окна
         dialog.setLocation(x, y);
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBag;
     private javax.swing.JButton jButtonBuildFire;
     private javax.swing.JButton jButtonBuildHouse;
@@ -727,6 +760,7 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCloseMap;
     private javax.swing.JButton jButtonCutTree;
     private javax.swing.JButton jButtonExitGame;
+    private javax.swing.JButton jButtonFinishGame;
     private javax.swing.JButton jButtonItemsOk;
     private javax.swing.JButton jButtonMap;
     private javax.swing.JButton jButtonStartGame;
@@ -766,4 +800,5 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneRegions;
     private javax.swing.JTable jTableCurrentRegion;
     private javax.swing.JTextArea jTextAreaDesription;
+    // End of variables declaration
 }
