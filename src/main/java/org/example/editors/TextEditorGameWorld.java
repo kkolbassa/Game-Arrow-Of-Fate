@@ -17,6 +17,7 @@ public class TextEditorGameWorld {
     private TextEditorMission textEditorMission;
     private TextEditorMap textEditorMap;
     private TextEditorBag textEditorBag;
+    private TextEditorStory textEditorStory;
     private Region currentRegion = new Region() {};
     public TextEditorGameWorld(JLabel jLabelCurrentRegion, JTable jTableCurrentRegion, ImagePanel imagePanel) {
         this.jLabelCurrentRegion = jLabelCurrentRegion;
@@ -31,6 +32,9 @@ public class TextEditorGameWorld {
     }
     public void createTextEditorBag(JList jListItems) {
         textEditorBag = new TextEditorBag(jListItems);
+    }
+    public void createTextEditorStory(JTextArea jTextAreaBeginStory, JTextArea jTextAreaEndStory) {
+        textEditorStory = new TextEditorStory(jTextAreaBeginStory,jTextAreaEndStory);
     }
     public void updateCurrentRegion() {
         textEditorMission.updateMission(currentRegion.getMission());
@@ -103,5 +107,9 @@ public class TextEditorGameWorld {
 
     public void setModelMap(Player player) {
         textEditorBag.setModelMap(player);
+    }
+
+    public void setStoryText() {
+        textEditorStory.setText();
     }
 }

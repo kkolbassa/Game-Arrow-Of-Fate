@@ -5,11 +5,13 @@
  */
 package org.example;
 
+import org.example.ExcelReader.MissionExcelReader;
 import org.example.editors.TextEditorGameWorld;
 import org.example.missionsFactory.TundraMissionFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 
 /**
@@ -24,7 +26,12 @@ public class Program extends javax.swing.JFrame {
 
     public Program() {
         initComponents();
-        initGameWorld();
+        try {
+            MissionExcelReader.readData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //initGameWorld();
         int numbers_to_add_max = 50;
         for (int i = 0; i <= numbers_to_add_max; i++ ) {
             jComboBoxTundra.addItem(String.valueOf(i));
@@ -45,7 +52,8 @@ public class Program extends javax.swing.JFrame {
         jTextAreaDesription.setOpaque(false);
         jTextAreaDesription.setBackground(new java.awt.Color(0, 0, 0, 0));
 
-        new TundraMissionFactory();
+        //new TundraMissionFactory();
+
     }
 
     private void initGameWorld() {
@@ -53,6 +61,8 @@ public class Program extends javax.swing.JFrame {
         textEditorGameWorld.createTextEditorMap(jListMap);
         textEditorGameWorld.createTextEditorBag(jListItems);
         textEditorGameWorld.createTextEditorMission(jTextAreaDesription, jLabelTask, jLabelTaskProgress,jLabelMissionComplete, gameWorld.getPlayer(),jButtonFinishGame);
+        textEditorGameWorld.createTextEditorStory(jTextAreaBeginStory,jTextAreaEndStory);
+        textEditorGameWorld.setStoryText();
         jButtonFinishGame.setVisible(false);
     }
 
@@ -110,6 +120,16 @@ public class Program extends javax.swing.JFrame {
         jScrollPaneItems = new javax.swing.JScrollPane();
         jListItems = new javax.swing.JList<>();
         jButtonItemsOk = new javax.swing.JButton();
+        jDialogBeginStory = new javax.swing.JDialog();
+        jLabelBigining = new javax.swing.JLabel();
+        jScrollPaneBeginStory = new javax.swing.JScrollPane();
+        jTextAreaBeginStory = new javax.swing.JTextArea();
+        jButtonContinueGame = new javax.swing.JButton();
+        jDialogEndStory = new javax.swing.JDialog();
+        jLabelBigining1 = new javax.swing.JLabel();
+        jButtonFinishGameWin = new javax.swing.JButton();
+        jScrollPaneEndStory = new javax.swing.JScrollPane();
+        jTextAreaEndStory = new javax.swing.JTextArea();
         jPanelStartGame = new javax.swing.JPanel();
         jLabelGame = new javax.swing.JLabel();
         jLabelImageGame = new javax.swing.JLabel();
@@ -387,7 +407,7 @@ public class Program extends javax.swing.JFrame {
                                                 .addGap(38, 38, 38))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMissionLayout.createSequentialGroup()
                                                 .addComponent(jButtonFinishGame)
-                                                .addGap(50, 50, 50))))
+                                                .addGap(54, 54, 54))))
         );
         jPanelMissionLayout.setVerticalGroup(
                 jPanelMissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,9 +424,9 @@ public class Program extends javax.swing.JFrame {
                                         .addComponent(jLabelTaskProgress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabelMissionComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
+                                .addGap(59, 59, 59)
                                 .addComponent(jButtonFinishGame, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))
+                                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jFrameGameLayout = new javax.swing.GroupLayout(jFrameGame.getContentPane());
@@ -552,6 +572,94 @@ public class Program extends javax.swing.JFrame {
                         .addComponent(jPanelBag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabelBigining.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelBigining.setText("Начало");
+
+        jTextAreaBeginStory.setEditable(false);
+        jTextAreaBeginStory.setColumns(20);
+        jTextAreaBeginStory.setRows(5);
+        jScrollPaneBeginStory.setViewportView(jTextAreaBeginStory);
+
+        jButtonContinueGame.setText("Вперед");
+        jButtonContinueGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContinueGameActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogBeginStoryLayout = new javax.swing.GroupLayout(jDialogBeginStory.getContentPane());
+        jDialogBeginStory.getContentPane().setLayout(jDialogBeginStoryLayout);
+        jDialogBeginStoryLayout.setHorizontalGroup(
+                jDialogBeginStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogBeginStoryLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabelBigining)
+                                .addGap(321, 321, 321))
+                        .addGroup(jDialogBeginStoryLayout.createSequentialGroup()
+                                .addGroup(jDialogBeginStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jDialogBeginStoryLayout.createSequentialGroup()
+                                                .addGap(65, 65, 65)
+                                                .addComponent(jScrollPaneBeginStory, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jDialogBeginStoryLayout.createSequentialGroup()
+                                                .addGap(310, 310, 310)
+                                                .addComponent(jButtonContinueGame, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        jDialogBeginStoryLayout.setVerticalGroup(
+                jDialogBeginStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogBeginStoryLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelBigining)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                                .addComponent(jScrollPaneBeginStory, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jButtonContinueGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))
+        );
+
+        jLabelBigining1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelBigining1.setText("Проздравляем!");
+
+        jButtonFinishGameWin.setText("Закончить игру");
+        jButtonFinishGameWin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinishGameWinActionPerformed(evt);
+            }
+        });
+
+        jTextAreaEndStory.setEditable(false);
+        jTextAreaEndStory.setColumns(20);
+        jTextAreaEndStory.setRows(5);
+        jScrollPaneEndStory.setViewportView(jTextAreaEndStory);
+
+        javax.swing.GroupLayout jDialogEndStoryLayout = new javax.swing.GroupLayout(jDialogEndStory.getContentPane());
+        jDialogEndStory.getContentPane().setLayout(jDialogEndStoryLayout);
+        jDialogEndStoryLayout.setHorizontalGroup(
+                jDialogEndStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogEndStoryLayout.createSequentialGroup()
+                                .addGroup(jDialogEndStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jDialogEndStoryLayout.createSequentialGroup()
+                                                .addGap(271, 271, 271)
+                                                .addGroup(jDialogEndStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabelBigining1)
+                                                        .addComponent(jButtonFinishGameWin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jDialogEndStoryLayout.createSequentialGroup()
+                                                .addGap(53, 53, 53)
+                                                .addComponent(jScrollPaneEndStory, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        jDialogEndStoryLayout.setVerticalGroup(
+                jDialogEndStoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogEndStoryLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabelBigining1)
+                                .addGap(36, 36, 36)
+                                .addComponent(jScrollPaneEndStory, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonFinishGameWin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabelGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -610,10 +718,10 @@ public class Program extends javax.swing.JFrame {
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
         gameWorld = new GameWorld();
         initGameWorld();
+        jDialogBeginStory.setVisible(true);
+        jDialogBeginStory.setBounds(100, 100, 740, 460);
+        setLocation(jDialogBeginStory);
 
-        jDialogChooseRegion.setVisible(true);
-        jDialogChooseRegion.setBounds(0, 100, 645, 399);
-        setLocation(jDialogChooseRegion);
     }//GEN-LAST:event_jButtonStartGameActionPerformed
 
     private void jButtonChooseRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseRegionActionPerformed
@@ -721,14 +829,26 @@ public class Program extends javax.swing.JFrame {
         jDialogBag.setBounds(100, 100, 570, 470);
         setLocation(jDialogBag);
     }
+    private void jButtonContinueGameActionPerformed(java.awt.event.ActionEvent evt) {
+        jDialogBeginStory.dispose();
+
+        jDialogChooseRegion.setVisible(true);
+        jDialogChooseRegion.setBounds(0, 100, 645, 399);
+        setLocation(jDialogChooseRegion);
+    }
 
     private void jButtonItemsOkActionPerformed(java.awt.event.ActionEvent evt) {
         jDialogBag.dispose();
     }
     private void jButtonFinishGameActionPerformed(java.awt.event.ActionEvent evt) {
         jFrameGame.dispose();
+        jDialogEndStory.setVisible(true);
+        jDialogEndStory.setBounds(100, 100, 740, 460);
+        setLocation(jDialogEndStory);
     }
-
+    private void jButtonFinishGameWinActionPerformed(java.awt.event.ActionEvent evt) {
+        jDialogEndStory.dispose();
+    }
     private void setLocation(JFrame frame){
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
@@ -758,9 +878,11 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JButton jButtonChooseCurrentRegion;
     private javax.swing.JButton jButtonChooseRegion;
     private javax.swing.JButton jButtonCloseMap;
+    private javax.swing.JButton jButtonContinueGame;
     private javax.swing.JButton jButtonCutTree;
     private javax.swing.JButton jButtonExitGame;
     private javax.swing.JButton jButtonFinishGame;
+    private javax.swing.JButton jButtonFinishGameWin;
     private javax.swing.JButton jButtonItemsOk;
     private javax.swing.JButton jButtonMap;
     private javax.swing.JButton jButtonStartGame;
@@ -768,10 +890,14 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxMixedForest;
     private javax.swing.JComboBox<String> jComboBoxTundra;
     private javax.swing.JDialog jDialogBag;
+    private javax.swing.JDialog jDialogBeginStory;
     private javax.swing.JDialog jDialogChooseRegion;
+    private javax.swing.JDialog jDialogEndStory;
     private javax.swing.JDialog jDialogMap;
     private javax.swing.JFrame jFrameGame;
     private javax.swing.JLabel jLabelBag;
+    private javax.swing.JLabel jLabelBigining;
+    private javax.swing.JLabel jLabelBigining1;
     private javax.swing.JLabel jLabelCountRegion;
     private javax.swing.JLabel jLabelCurrentRegion;
     private javax.swing.JLabel jLabelDesert;
@@ -794,11 +920,15 @@ public class Program extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelGameTop;
     private javax.swing.JPanel jPanelMission;
     private javax.swing.JPanel jPanelStartGame;
+    private javax.swing.JScrollPane jScrollPaneBeginStory;
+    private javax.swing.JScrollPane jScrollPaneEndStory;
     private javax.swing.JScrollPane jScrollPaneItems;
     private javax.swing.JScrollPane jScrollPaneMap;
     private javax.swing.JScrollPane jScrollPaneMission;
     private javax.swing.JScrollPane jScrollPaneRegions;
     private javax.swing.JTable jTableCurrentRegion;
+    private javax.swing.JTextArea jTextAreaBeginStory;
     private javax.swing.JTextArea jTextAreaDesription;
+    private javax.swing.JTextArea jTextAreaEndStory;
     // End of variables declaration
 }
