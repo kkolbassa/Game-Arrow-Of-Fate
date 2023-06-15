@@ -2,12 +2,11 @@ package org.example.objectsOfInterest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.example.ComponentObjectOfInterest;
-import org.example.ComponentRegion;
 import org.example.blocks.*;
 
 import java.util.ArrayList;
 
-public abstract class ObjectOfInterest implements ComponentRegion, ComponentObjectOfInterest {
+public abstract class ObjectOfInterest implements ComponentObjectOfInterest {
     private ArrayList<Block> blocks;
     protected String name;
 

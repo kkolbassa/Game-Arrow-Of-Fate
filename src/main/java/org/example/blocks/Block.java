@@ -1,9 +1,8 @@
 package org.example.blocks;
 
 import org.example.ComponentObjectOfInterest;
-import org.example.ComponentRegion;
 
-public abstract class Block implements ComponentRegion, ComponentObjectOfInterest {
+public abstract class Block implements ComponentObjectOfInterest {
     protected String name;
 
     public String getName() {

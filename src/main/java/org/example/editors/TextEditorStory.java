@@ -11,6 +11,8 @@ public class TextEditorStory {
     public TextEditorStory(JTextArea beginStory, JTextArea endStory) {
         this.beginStory = beginStory;
         this.endStory = endStory;
+        beginStory.setText("");
+        endStory.setText("");
     }
     public void setText(){
         setStyle();

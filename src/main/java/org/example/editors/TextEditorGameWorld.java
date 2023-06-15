@@ -1,6 +1,5 @@
 package org.example.editors;
 
-import org.example.ImagePanel;
 import org.example.Player;
 import org.example.regions.Region;
 
@@ -22,6 +21,7 @@ public class TextEditorGameWorld {
     public TextEditorGameWorld(JLabel jLabelCurrentRegion, JTable jTableCurrentRegion, ImagePanel imagePanel) {
         this.jLabelCurrentRegion = jLabelCurrentRegion;
         this.jTableCurrentRegion = jTableCurrentRegion;
+        jTableCurrentRegion.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         imagesEditor = new ImagesEditor(imagePanel);
     }
     public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete, Player player, JButton jButtonFinishGame){

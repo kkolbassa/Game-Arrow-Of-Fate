@@ -1,13 +1,12 @@
 package org.example.regions;
 
-import org.example.ComponentRegion;
 import org.example.missions.Mission;
 import org.example.objectsOfInterest.ObjectOfInterest;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public abstract class Region implements ComponentRegion {
+public abstract class Region {
     private boolean isObjectsChanged = false;
     private ObjectOfInterest removedObject = null;
     private ArrayList<ObjectOfInterest> objectsOfInterest;

@@ -16,7 +16,7 @@ public class GameWorld {
         return currentRegion;
     }
 
-    public void createWorld(int countTundra, int countMixedForest, int countDesert) throws Exception{
+    public void createWorld(int countTundra, int countMixedForest, int countDesert){
         regionsManipulation.createRegions(countTundra,countMixedForest,countDesert);
         setCurrentRegion();
     }

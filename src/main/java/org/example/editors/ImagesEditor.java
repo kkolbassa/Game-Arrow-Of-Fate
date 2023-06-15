@@ -1,6 +1,5 @@
 package org.example.editors;
 
-import org.example.ImagePanel;
 import org.example.objectsOfInterest.ObjectOfInterest;
 import org.example.regions.Region;
 
@@ -48,7 +47,7 @@ public class ImagesEditor {
         setButtonAction(button,objectOfInterest, jTableCurrentRegion);
     }
     private void setButtonImage(JButton button, ObjectOfInterest objectOfInterest) {
-        button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/"+objectOfInterest.getName()+".png")));
+        button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/"+currentRegion.getName()+objectOfInterest.getName()+".png")));
         button.setBorderPainted(false);
         button.setFocusPainted(false);
         button.setContentAreaFilled(false);
@@ -60,7 +59,7 @@ public class ImagesEditor {
         GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
         for (JButton button : buttonList) {
             hGroup.addComponent(button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-            hGroup.addGap(10); // Промежуток между кнопками
+            if(buttonList.indexOf(button)!=(buttonList.size()-1)) hGroup.addGap(12); // Промежуток между кнопками
 
         }
         layout.setHorizontalGroup(hGroup);

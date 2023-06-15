@@ -16,9 +16,9 @@ public class MixedForestFactory extends RegionFactory{
     public MixedForestFactory() {
         factories.add(MeadowFactory.getInstance());
         factories.add(ForestFactory.getInstance());
-        factories.add(MountainFactory.getInstance());
         factories.add(SwampFactory.getInstance());
         factories.add(VillageFactory.getInstance());
+        factories.add(MountainFactory.getInstance());
         missionFactory = MixedForestMissionFactory.getInstance();
     }
 

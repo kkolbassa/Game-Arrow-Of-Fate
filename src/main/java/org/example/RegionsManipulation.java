@@ -13,17 +13,11 @@ public class RegionsManipulation {
     private ArrayList<Region> regions = new ArrayList<>();
     private RegionFactory factory;
 
-    public void createRegions(int countTundra, int countMixedForest, int countDesert ) throws Exception{
-        checkCountData(countTundra, countMixedForest,countDesert);
+    public void createRegions(int countTundra, int countMixedForest, int countDesert ) {
         createTundra(countTundra);
         createMixedForest(countMixedForest);
         createDesert(countDesert);
         Collections.shuffle(regions);
-    }
-
-    private void checkCountData(int countTundra, int countMixedForest, int countDesert) throws Exception {
-        if(countTundra==0&&countMixedForest==0&&countDesert==0)
-            throw new Exception("Неверно введено кол-во регионов");
     }
 
     private void createDesert(int countDesert) {
