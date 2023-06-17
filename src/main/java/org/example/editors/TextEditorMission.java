@@ -1,11 +1,9 @@
 package org.example.editors;
 
-import org.example.Player;
 import org.example.missions.Mission;
 import org.example.regions.Region;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class TextEditorMission {
@@ -14,15 +12,13 @@ public class TextEditorMission {
     private JLabel progress;
     private JLabel complete;
     private JButton finishGame;
-    private Player player;
     private ArrayList<Mission> significantMissions;
 
-    public TextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel complete,Player player, JButton jButtonFinishGame) {
+    public TextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel complete, JButton jButtonFinishGame) {
         this.description = description;
         this.task = task;
         this.progress = progress;
         this.complete = complete;
-        this.player = player;
         this.finishGame = jButtonFinishGame;
         significantMissions = new ArrayList<>();
     }
@@ -55,7 +51,6 @@ public class TextEditorMission {
         complete.setForeground(new java.awt.Color(255, 0, 51));
     }
     private void checkAllMissionsComplete() {
-        //if(player.isMissionsComplete()) createFinishButton();
         if(isMissionsComplete()) createFinishButton();
     }
 

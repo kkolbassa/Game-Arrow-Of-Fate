@@ -3,6 +3,8 @@ package org.example.editors;
 import org.example.ExcelReader.StoryData;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class TextEditorStory {
     private JTextArea beginStory;
@@ -24,32 +26,29 @@ public class TextEditorStory {
 
         beginStory.setLineWrap(true);
         beginStory.setWrapStyleWord(true);
-        beginStory.setBorder(null);
         beginStory.setFont(new java.awt.Font("Segoe UI", 0, 18));
-
-        // Прозрачный задний фон
         beginStory.setOpaque(false);
         beginStory.setBackground(new java.awt.Color(0, 0, 0, 0));
 
         endStory.setLineWrap(true);
         endStory.setWrapStyleWord(true);
-        endStory.setBorder(null);
         endStory.setFont(new java.awt.Font("Segoe UI", 0, 18));
-
-        // Прозрачный задний фон
         endStory.setOpaque(false);
         endStory.setBackground(new java.awt.Color(0, 0, 0, 0));
+
+        beginStory.setBorder(new LineBorder(new java.awt.Color(234, 114, 246), 4));
+        endStory.setBorder(new LineBorder(new java.awt.Color(234, 114, 246), 4));
     }
 
     private void setBeginning() {
         for (String story: storyData.getBeginStory()) {
-            beginStory.append(story+"\n");
+            beginStory.append("      "+story+"\n");
         }
     }
 
     private void setEnd() {
         for (String story: storyData.getEndStory()) {
-            endStory.append(story+"\n");
+            endStory.append("      "+story+"\n");
         }
     }
 }

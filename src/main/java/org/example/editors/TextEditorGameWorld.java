@@ -24,8 +24,8 @@ public class TextEditorGameWorld {
         jTableCurrentRegion.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         imagesEditor = new ImagesEditor(imagePanel);
     }
-    public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete, Player player, JButton jButtonFinishGame){
-        textEditorMission = new TextEditorMission(description,task,progress,jLabelMissionComplete,player, jButtonFinishGame);
+    public void createTextEditorMission(JTextArea description, JLabel task, JLabel progress, JLabel jLabelMissionComplete, JButton jButtonFinishGame){
+        textEditorMission = new TextEditorMission(description,task,progress,jLabelMissionComplete, jButtonFinishGame);
     }
     public void createTextEditorMap(JList jListMap){
         textEditorMap = new TextEditorMap(jListMap);

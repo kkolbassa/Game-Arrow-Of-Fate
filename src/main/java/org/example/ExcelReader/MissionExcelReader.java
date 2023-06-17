@@ -1,6 +1,7 @@
 package org.example.ExcelReader;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.missions.Mission;
 import org.example.missionsFactory.MissionFactory;
 
@@ -11,8 +12,8 @@ import java.util.Iterator;
 
 public class MissionExcelReader {
     public static void readData() throws IOException {
-        InputStream inputStream = MissionExcelReader.class.getClassLoader().getResourceAsStream("data/Миссии.xlsx");
-        Workbook workbook = WorkbookFactory.create(inputStream);
+        InputStream inputStream = MissionExcelReader.class.getClassLoader().getResourceAsStream("data/Текстовые описания.xlsx");
+        Workbook workbook = new XSSFWorkbook(inputStream);
         readMissions(workbook);
         readBeginStory(workbook);
         readEndStory(workbook);
