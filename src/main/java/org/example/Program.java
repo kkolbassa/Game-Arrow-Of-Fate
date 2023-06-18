@@ -841,10 +841,15 @@ public class Program extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExitGameActionPerformed
 
     private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
-        jDialogMap.setVisible(true);
-        jDialogMap.setBounds(100, 100, 655, 560);
-        ChangeScreenSize.setLocation(jDialogMap);
-        textEditorGameWorld.setModelMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
+        try{
+            textEditorGameWorld.setModelMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
+            jDialogMap.setVisible(true);
+            jDialogMap.setBounds(100, 100, 655, 560);
+            ChangeScreenSize.setLocation(jDialogMap);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButtonMapActionPerformed
 
     private void jButtonChooseCurrentRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseCurrentRegionActionPerformed
@@ -862,10 +867,15 @@ public class Program extends javax.swing.JFrame {
         jDialogMap.dispose();
     }//GEN-LAST:event_jButtonCloseMapActionPerformed
     private void jButtonBagActionPerformed(java.awt.event.ActionEvent evt) {
-        textEditorGameWorld.setModelMap(gameWorld.getPlayer());
-        jDialogBag.setVisible(true);
-        jDialogBag.setBounds(100, 100, 570, 470);
-        ChangeScreenSize.setLocation(jDialogBag);
+        try {
+            textEditorGameWorld.setModelMap(gameWorld.getPlayer());
+            jDialogBag.setVisible(true);
+            jDialogBag.setBounds(100, 100, 570, 470);
+            ChangeScreenSize.setLocation(jDialogBag);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
     private void jButtonContinueGameActionPerformed(java.awt.event.ActionEvent evt) {
         jDialogBeginStory.dispose();

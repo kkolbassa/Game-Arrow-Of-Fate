@@ -26,20 +26,6 @@ public class ItemsStorage {
         return wood;
     }
 
-    public void woodToFire() throws Exception {
-        if(getWood()== null||getWood().getCount()<1) throw new Exception("Недостаточно бревен для розжига (надо 1 шт.)");
-        else getWood().decreaseCount(1);
-    }
-
-    public void woodToHouse() throws Exception {
-        if(getWood()== null||getWood().getCount()<10) throw new Exception("Недостаточно бревен для дома (надо 10 шт.)");
-        else getWood().decreaseCount(10);
-    }
-    public void woodToWell() throws Exception {
-        if(getWood()== null||getWood().getCount()<5) throw new Exception("Недостаточно бревен для колодца (надо 5 шт.)");
-        else getWood().decreaseCount(5);
-    }
-
     public void checkWood(int woodToAction) throws Exception {
         if(getWood()== null||getWood().getCount()<woodToAction) throw new Exception("Недостаточно бревен для действия (надо "+woodToAction+ " шт.)");
     }

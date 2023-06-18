@@ -53,4 +53,11 @@ public class RegionsManipulation {
         if(chooseObject<0) throw new Exception("Регион не выбран!");
         else return regions.get(chooseObject);
     }
+
+    public Region changeRegion(Region currentRegion, int chooseObject) throws Exception {
+        Region newRegion = getRegion(chooseObject);
+        if(currentRegion.equals(newRegion)) throw new Exception("Вы уже находитесь в этом регионе!");
+        if(Math.abs(regions.indexOf(currentRegion) - chooseObject)>1) throw new Exception("Перемещаться можно только в соседний регион!");
+        else return newRegion;
+    }
 }
