@@ -27,7 +27,7 @@ public class GameWorld {
         currentRegion = regionsManipulation.getRegion(chooseObject);
     }
     public void cutTree(int chooseObject) throws Exception {
-        player.tryCutTree(currentRegion, chooseObject);
+        player.cutTree(currentRegion, chooseObject);
     }
 
     public void buildHouse(int chooseObject) throws Exception {
@@ -35,7 +35,7 @@ public class GameWorld {
     }
 
     public void buildFire(int chooseObject) throws Exception {
-        player.tryBuildFire(currentRegion, chooseObject);
+        player.buildFire(currentRegion, chooseObject);
     }
 
     public ArrayList<Region> getRegions() {

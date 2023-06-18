@@ -21,7 +21,7 @@ public class MixedForestMissionFactory extends MissionFactory{
 
     @Override
     public Mission create(boolean significant) {
-        int count = (int) (Math.random()*10)+1;
+        int count = (int) (Math.random()*4)+1;
         int chosenMission = (int) (Math.random()*filteredMissions.size());
 
         return new MixedForestMission(filteredMissions.get(chosenMission).getDescription(),filteredMissions.get(chosenMission).getTask(),count,significant);

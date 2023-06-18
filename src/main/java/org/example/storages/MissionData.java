@@ -1,4 +1,4 @@
-package org.example.ExcelReader;
+package org.example.storages;
 
 public class MissionData {
     private String region;

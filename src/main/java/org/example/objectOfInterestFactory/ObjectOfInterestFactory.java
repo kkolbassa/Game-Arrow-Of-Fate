@@ -14,7 +14,7 @@ public abstract class ObjectOfInterestFactory {
 
         factories.forEach(factory -> {
             if(factory instanceof CountableBlockFactory){
-                int count = 1 + (int) (Math.random()*10);
+                int count = 1 + (int) (Math.random()*20);
                 CountableBlockFactory countableFactory = (CountableBlockFactory)factory;
                 blocks.add(countableFactory.create(count));
             }else blocks.add(factory.create());

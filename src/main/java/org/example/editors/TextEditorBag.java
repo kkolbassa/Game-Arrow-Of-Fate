@@ -1,6 +1,7 @@
 package org.example.editors;
 
 import org.example.Player;
+import org.example.items.CountableItem;
 import org.example.items.Item;
 
 import javax.swing.*;
@@ -19,9 +20,15 @@ public class TextEditorBag {
         ArrayList<Item> items = player.getItems();
 
         for(int i = 0; i< items.size();i++){
-            model.add(items.indexOf(items.get(i)), (i+1)+". "+items.get(i).getName());
+            if(!items.get(i).countable()) model.addElement(items.get(i).getFullName());
+            else if(countPositive(items.get(i))) model.addElement(items.get(i).getFullName());
         }
 
         bag.setModel(model);
+    }
+
+    private boolean countPositive (Item item) {
+        CountableItem countableItem = (CountableItem) item;
+        return  countableItem.getCount()>0;
     }
 }

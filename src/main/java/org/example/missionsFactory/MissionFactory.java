@@ -1,7 +1,7 @@
 package org.example.missionsFactory;
 
 import org.example.missions.Mission;
-import org.example.ExcelReader.MissionData;
+import org.example.storages.MissionData;
 
 import java.util.ArrayList;
 import java.util.List;

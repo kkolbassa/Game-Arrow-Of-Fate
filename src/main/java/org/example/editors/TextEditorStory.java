@@ -1,10 +1,9 @@
 package org.example.editors;
 
-import org.example.ExcelReader.StoryData;
+import org.example.storages.StoryData;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.*;
 
 public class TextEditorStory {
     private JTextArea beginStory;

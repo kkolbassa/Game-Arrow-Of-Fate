@@ -10,4 +10,10 @@ public abstract class Item {
     public String getName() {
         return name;
     }
+    public String getFullName(){
+        return getName();
+    }
+    public boolean countable(){
+        return false;
+    }
 }
