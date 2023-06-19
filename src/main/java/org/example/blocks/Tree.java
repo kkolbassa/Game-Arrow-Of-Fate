@@ -20,4 +20,8 @@ public class Tree extends CountableBlock{
         setCount(getCount()-1);
     }
 
+    @Override
+    public void createTree() {
+        setCount(getCount()+1);
+    }
 }

@@ -21,6 +21,10 @@ public class GameWorld {
         return regionsManipulation.getRegions();
     }
 
+    public RegionsManipulation getRegionsManipulation() {
+        return regionsManipulation;
+    }
+
     public void createWorld(int countTundra, int countMixedForest, int countDesert){
         regionsManipulation.createRegions(countTundra,countMixedForest,countDesert);
         setCurrentRegion();

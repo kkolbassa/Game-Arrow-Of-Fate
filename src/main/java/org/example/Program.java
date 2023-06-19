@@ -27,6 +27,7 @@ public class Program extends javax.swing.JFrame {
 
     private GameWorld gameWorld = new GameWorld();
     private TextEditorGameWorld textEditorGameWorld;
+    private GameTimer gameTimer = new GameTimer();
 
     public Program() {
         try {
@@ -784,6 +785,8 @@ public class Program extends javax.swing.JFrame {
             jFrameGame.setSize(1490, 770);
             ChangeScreenSize.setLocation(jFrameGame);
 
+            gameTimer.startGame(gameWorld.getRegionsManipulation(), textEditorGameWorld);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
         }
@@ -843,6 +846,7 @@ public class Program extends javax.swing.JFrame {
     }
     private void jButtonExitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitGameActionPerformed
         jFrameGame.dispose();
+        gameTimer.stopGame();
     }//GEN-LAST:event_jButtonExitGameActionPerformed
 
     private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
@@ -890,6 +894,7 @@ public class Program extends javax.swing.JFrame {
         jDialogEndStory.setVisible(true);
         jDialogEndStory.setBounds(100, 100, 770, 610);
         ChangeScreenSize.setLocation(jDialogEndStory);
+        gameTimer.stopGame();
     }
     private void jButtonFinishGameWinActionPerformed(java.awt.event.ActionEvent evt) {
         jDialogEndStory.dispose();

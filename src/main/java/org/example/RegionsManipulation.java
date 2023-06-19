@@ -60,4 +60,8 @@ public class RegionsManipulation {
         if(Math.abs(regions.indexOf(currentRegion) - chooseObject)>1) throw new Exception("Перемещаться можно только в соседний регион!");
         else return newRegion;
     }
+
+    public void addTree() {
+        getRandomRegion().addTree();
+    }
 }

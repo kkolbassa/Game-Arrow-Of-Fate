@@ -145,4 +145,15 @@ public abstract class ObjectOfInterest implements ComponentObjectOfInterest {
             block.buildWell();
         }
     }
+
+    public void addTree() {
+        if (hasTree()) createTree();
+        else blocks.add(new Tree(1));
+    }
+
+    public void createTree() {
+        for (ComponentObjectOfInterest block : blocks) {
+            block.createTree();
+        }
+    }
 }

@@ -42,6 +42,9 @@ public abstract class Region {
     public void setName(String name) {
         this.name = name;
     }
+    public ObjectOfInterest getRandomObjectOfInterest(){
+        return objectsOfInterest.get((int) (Math.random()*objectsOfInterest.size()));
+    }
 
     public LinkedHashMap<String, String> getInfo2Table() {
         LinkedHashMap<String, String> table = new LinkedHashMap<>();
@@ -55,5 +58,9 @@ public abstract class Region {
         objectsOfInterest.remove(chooseObject);
         setObjectsChanged(true);
         throw new Exception("Упс! Выбранный объект сгорел!");
+    }
+
+    public void addTree() {
+        getRandomObjectOfInterest().addTree();
     }
 }

@@ -70,6 +70,10 @@ public abstract class Block implements ComponentObjectOfInterest {
 
     @Override
     public void buildWell() throws Exception {
+    }
+
+    @Override
+    public void createTree() {
 
     }
 }

@@ -14,4 +14,5 @@ public interface ComponentObjectOfInterest {
     void buildWell() throws Exception;
     boolean hasWell();
     String getInfo2Table();
+    void createTree();
 }
