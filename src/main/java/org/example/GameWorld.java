@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.actions.Action;
+import org.example.actions.CutTree;
 import org.example.regions.Region;
 
 import java.util.ArrayList;
@@ -15,6 +17,9 @@ public class GameWorld {
     public Region getCurrentRegion() {
         return currentRegion;
     }
+    public ArrayList<Region> getRegions() {
+        return regionsManipulation.getRegions();
+    }
 
     public void createWorld(int countTundra, int countMixedForest, int countDesert){
         regionsManipulation.createRegions(countTundra,countMixedForest,countDesert);
@@ -26,23 +31,7 @@ public class GameWorld {
     public void changeCurrentRegion(int chooseObject) throws Exception {
         currentRegion = regionsManipulation.changeRegion(currentRegion,chooseObject);
     }
-    public void cutTree(int chooseObject) throws Exception {
-        player.cutTree(currentRegion, chooseObject);
-    }
-
-    public void buildHouse(int chooseObject) throws Exception {
-        player.buildHouse(currentRegion, chooseObject);
-    }
-
-    public void buildFire(int chooseObject) throws Exception {
-        player.buildFire(currentRegion, chooseObject);
-    }
-
-    public ArrayList<Region> getRegions() {
-        return regionsManipulation.getRegions();
-    }
-
-    public void buildWell(int chooseObject) throws Exception {
-        player.buildWell(currentRegion, chooseObject);
+    public void doAction(int chooseObject, Action action) throws Exception {
+        player.doAction(currentRegion,chooseObject,action);
     }
 }

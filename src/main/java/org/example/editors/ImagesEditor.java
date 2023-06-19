@@ -9,12 +9,10 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class ImagesEditor {
+    private int countObjectOfInterest = 5;
     private ImagePanel panel;
     private ArrayList<JButton> buttonList = new ArrayList<>();
     private Region currentRegion;
-
-    public ImagesEditor() {
-    }
 
     public ImagesEditor(ImagePanel panel) {
         this.panel = panel;
@@ -34,14 +32,31 @@ public class ImagesEditor {
     private void addButtons(JTable jTableCurrentRegion){
         int countButton = currentRegion.getObjectsOfInterest().size();
 
-        for (int i = 0; i < countButton; i++) {
+        for (int i = 0; i < countObjectOfInterest; i++) {
             JButton button = new JButton();
-            button.setName(currentRegion.getObjectOfInterest(i).getName());
-            fillButton(button,currentRegion.getObjectOfInterest(i),jTableCurrentRegion);
+            if (i< countButton) {
+                button.setName(currentRegion.getObjectOfInterest(i).getName());
+                fillButton(button, currentRegion.getObjectOfInterest(i), jTableCurrentRegion);
+            }else{
+                button.setName("Пустота");
+                fillEmptyButton(button);
+            }
             buttonList.add(button);
         }
 
     }
+
+    private void fillEmptyButton(JButton button) {
+        setButtonImage(button);
+    }
+
+    private void setButtonImage(JButton button) {
+        button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/"+button.getName()+".png")));
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+    }
+
     private void fillButton(JButton button, ObjectOfInterest objectOfInterest, JTable jTableCurrentRegion) {
         setButtonImage(button,objectOfInterest);
         setButtonAction(button,objectOfInterest, jTableCurrentRegion);
@@ -89,42 +104,13 @@ public class ImagesEditor {
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                // Изменение внешнего вида кнопки при выходе курсора мыши
                 button.setBorderPainted(false);
             }
         });
     }
     public void updateImagesInfo(Region currentRegion,JTable jTableCurrentRegion) {
-        ObjectOfInterest changedObject = currentRegion.getRemovedObject();
-        updateButtonsList(changedObject);
-        this.currentRegion = currentRegion;
-        updateButtonsAction(jTableCurrentRegion);
-        panel.revalidate();
-        panel.repaint();
-        currentRegion.setObjectsChanged(false);
-
-    }
-
-    private void updateButtonsAction(JTable jTableCurrentRegion) {
-        int countButton = currentRegion.getObjectsOfInterest().size();
-
-        for (int i = 0; i < countButton; i++) {
-            setButtonAction(buttonList.get(i),currentRegion.getObjectOfInterest(i),jTableCurrentRegion);
-        }
-    }
-
-    private void updateButtonsList(ObjectOfInterest changedObject) {
-        panel.remove(getButton(changedObject));  // Удаляем кнопку из панели
-        buttonList.remove(getButton(changedObject));
-    }
-
-    private int getButton(ObjectOfInterest countObject) {
-        int countButton = buttonList.size();
-
-        for (int i = 0; i < countButton; i++) {
-            if(buttonList.get(i).getName().equals(countObject.getName())) return i;
-        }
-        return -1;
+        clean();
+        createImageRegion(currentRegion,jTableCurrentRegion);
     }
 
     public void clean() {

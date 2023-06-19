@@ -7,20 +7,17 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public abstract class Region {
-    private boolean isObjectsChanged = false;
-    private ObjectOfInterest removedObject = null;
-    private ArrayList<ObjectOfInterest> objectsOfInterest;
     private String name;
     private Mission mission;
+    private boolean isObjectsChanged = false;
+    private ArrayList<ObjectOfInterest> objectsOfInterest;
 
     public Mission getMission() {
         return mission;
     }
-
     public void setMission(Mission mission) {
         this.mission = mission;
     }
-
     public ArrayList<ObjectOfInterest> getObjectsOfInterest() {
         return objectsOfInterest;
     }
@@ -39,8 +36,11 @@ public abstract class Region {
     public void setObjectsOfInterest(ArrayList<ObjectOfInterest> objectsOfInterest) {
         this.objectsOfInterest = objectsOfInterest;
     }
-    public void addObjectsOfInterest(ObjectOfInterest objectsOfInterest) {
-        this.objectsOfInterest.add(objectsOfInterest);
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LinkedHashMap<String, String> getInfo2Table() {
@@ -51,22 +51,9 @@ public abstract class Region {
         return table;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void removeObjectOfInterest(int chooseObject) throws Exception {
-        removedObject = objectsOfInterest.get(chooseObject);
         objectsOfInterest.remove(chooseObject);
         setObjectsChanged(true);
         throw new Exception("Упс! Выбранный объект сгорел!");
-    }
-
-    public ObjectOfInterest getRemovedObject() {
-        return removedObject;
     }
 }

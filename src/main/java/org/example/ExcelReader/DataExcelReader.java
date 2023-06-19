@@ -12,9 +12,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MissionExcelReader {
+public class DataExcelReader {
     public static void readData() throws IOException {
-        InputStream inputStream = MissionExcelReader.class.getClassLoader().getResourceAsStream("data/Текстовые описания.xlsx");
+        InputStream inputStream = DataExcelReader.class.getClassLoader().getResourceAsStream("data/Текстовые описания.xlsx");
         Workbook workbook = new XSSFWorkbook(inputStream);
         readMissions(workbook);
         readBeginStory(workbook);

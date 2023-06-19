@@ -18,40 +18,13 @@ public class Player {
     public ItemsStorage getItemsStorage() {
         return itemsStorage;
     }
-
-    public void cutTree(Region currentRegion, int chooseObject) throws Exception {
+    public void doAction(Region currentRegion, int chooseObject, Action action) throws Exception {
         checkChooseObject(chooseObject);
-
         ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
-        Action action = new CutTree();
         actions.add(action);
         action.complete(currentRegion,objectOfInterest,getItemsStorage());
     }
     private void checkChooseObject(int chooseObject) throws Exception {
         if(chooseObject<0) throw new Exception("Объект интереса не выбран");
-    }
-    public void buildHouse(Region currentRegion, int chooseObject) throws Exception {
-        checkChooseObject(chooseObject);
-
-        ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
-        Action action = new BuildHouse();
-        actions.add(action);
-        action.complete(currentRegion,objectOfInterest,getItemsStorage());
-    }
-    public void buildFire(Region currentRegion, int chooseObject) throws Exception {
-        checkChooseObject(chooseObject);
-        ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
-        Action action = new BuildFire();
-        actions.add(action);
-        action.complete(currentRegion,objectOfInterest,getItemsStorage());
-    }
-
-    public void buildWell(Region currentRegion, int chooseObject) throws Exception {
-        checkChooseObject(chooseObject);
-
-        ObjectOfInterest objectOfInterest = currentRegion.getObjectOfInterest(chooseObject);
-        Action action = new BuildWell();
-        actions.add(action);
-        action.complete(currentRegion,objectOfInterest,getItemsStorage());
     }
 }

@@ -40,39 +40,10 @@ public class TextEditorGameWorld {
         textEditorMission.updateMission(currentRegion.getMission());
         updatePartInfo();
     }
-    public void updateCurrentRegion(Region currentRegion) {
-        clean();
-        updateFullInfo(currentRegion);
-        textEditorMission.updateMission(currentRegion.getMission());
-    }
-    public void updateCurrentRegion(Region currentRegion, ArrayList<Region> regions) {
-        textEditorMission.setSignificantMissions(regions);
-        updateCurrentRegion(currentRegion);
-    }
-
-    private void updateFullInfo(Region currentRegion) {
-        this.currentRegion =currentRegion;
-        updateRegionName(currentRegion.getName());
-        updateTableObjects(currentRegion.getInfo2Table());
-        createImagesInfo();
-    }
-
     private void updatePartInfo() {
         updateTableObjects(currentRegion.getInfo2Table());
         if(currentRegion.isObjectsChanged()) updateImagesInfo();
     }
-
-    private void createImagesInfo() {
-        imagesEditor.createImageRegion(currentRegion, jTableCurrentRegion);
-    }
-    private void updateImagesInfo() {
-        imagesEditor.updateImagesInfo(currentRegion,jTableCurrentRegion);
-    }
-
-    private void updateRegionName(String name) {
-        jLabelCurrentRegion.setText(name);
-    }
-
     private void updateTableObjects(LinkedHashMap<String, String> currentRegion) {
         DefaultTableModel model = new DefaultTableModel() {
             @Override
@@ -95,17 +66,42 @@ public class TextEditorGameWorld {
         column.setPreferredWidth(500);
 
     }
+    private void updateImagesInfo() {
+        imagesEditor.updateImagesInfo(currentRegion,jTableCurrentRegion);
+    }
 
+    public void updateCurrentRegion(Region currentRegion) {
+        clean();
+        updateFullInfo(currentRegion);
+        textEditorMission.updateMission(currentRegion.getMission());
+    }
     public void clean() {
         this.currentRegion = new Region() {};
         imagesEditor.clean();
     }
+    private void updateFullInfo(Region currentRegion) {
+        this.currentRegion =currentRegion;
+        updateRegionName(currentRegion.getName());
+        updateTableObjects(currentRegion.getInfo2Table());
+        createImagesInfo();
+    }
+    public void updateCurrentRegion(Region currentRegion, ArrayList<Region> regions) {
+        textEditorMission.setSignificantMissions(regions);
+        updateCurrentRegion(currentRegion);
+    }
 
-    public void setModelMap(ArrayList<Region> regions, Region currentRegion) {
+    private void createImagesInfo() {
+        imagesEditor.createImageRegion(currentRegion, jTableCurrentRegion);
+    }
+    private void updateRegionName(String name) {
+        jLabelCurrentRegion.setText(name);
+    }
+
+    public void setModeMap(ArrayList<Region> regions, Region currentRegion) {
         textEditorMap.setModelMap(regions,currentRegion);
     }
 
-    public void setModelMap(Player player) {
+    public void setModeBag(Player player) {
         textEditorBag.setModelMap(player);
     }
 

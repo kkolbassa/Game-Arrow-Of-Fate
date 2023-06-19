@@ -13,7 +13,6 @@ public class ImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Рисуем фоновую картинку
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
 }

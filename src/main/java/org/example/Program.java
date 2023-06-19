@@ -5,7 +5,11 @@
  */
 package org.example;
 
-import org.example.ExcelReader.MissionExcelReader;
+import org.example.ExcelReader.DataExcelReader;
+import org.example.actions.BuildFire;
+import org.example.actions.BuildHouse;
+import org.example.actions.BuildWell;
+import org.example.actions.CutTree;
 import org.example.editors.ChangeScreenSize;
 import org.example.editors.ImagePanel;
 import org.example.editors.TextEditorGameWorld;
@@ -27,9 +31,9 @@ public class Program extends javax.swing.JFrame {
     public Program() {
         try {
             initComponents();
-            MissionExcelReader.readData();
+            DataExcelReader.readData();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog (null, "Файлы для игры не найдены", "Oшибка", JOptionPane.ERROR_MESSAGE);
         }
         ChangeScreenSize.setLocation(this);
     }
@@ -761,30 +765,29 @@ public class Program extends javax.swing.JFrame {
         ChangeScreenSize.setLocation(jDialogBeginStory);
 
     }//GEN-LAST:event_jButtonStartGameActionPerformed
+    private void jButtonContinueGameActionPerformed(java.awt.event.ActionEvent evt) {
+        jDialogBeginStory.dispose();
 
+        jDialogChooseRegion.setVisible(true);
+        jDialogChooseRegion.setBounds(0, 100, 645, 399);
+        ChangeScreenSize.setLocation(jDialogChooseRegion);
+    }
     private void jButtonChooseRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseRegionActionPerformed
 
         try {
-                takeCountRegions();
-                cleanComboBox();
+            takeCountRegions();
+            cleanComboBox();
 
-                textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion(),gameWorld.getRegions());
-                jDialogChooseRegion.dispose();
-                jFrameGame.setVisible(rootPaneCheckingEnabled);
-                jFrameGame.setSize(1490, 770);
-                ChangeScreenSize.setLocation(jFrameGame);
+            textEditorGameWorld.updateCurrentRegion(gameWorld.getCurrentRegion(),gameWorld.getRegions());
+            jDialogChooseRegion.dispose();
+            jFrameGame.setVisible(rootPaneCheckingEnabled);
+            jFrameGame.setSize(1490, 770);
+            ChangeScreenSize.setLocation(jFrameGame);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonChooseRegionActionPerformed
-
-    private void cleanComboBox() {
-        jComboBoxTundra.setSelectedIndex(0);
-        jComboBoxMixedForest.setSelectedIndex(0);
-        jComboBoxDesert.setSelectedIndex(0);
-    }
-
     private void takeCountRegions() throws Exception {
 
         int countTundra =Integer.parseInt((String) jComboBoxTundra.getSelectedItem());
@@ -793,11 +796,15 @@ public class Program extends javax.swing.JFrame {
 
         gameWorld.createWorld(countTundra,countMixedForest,countDesert);
     }
-
+    private void cleanComboBox() {
+        jComboBoxTundra.setSelectedIndex(0);
+        jComboBoxMixedForest.setSelectedIndex(0);
+        jComboBoxDesert.setSelectedIndex(0);
+    }
     private void jButtonCutTreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCutTreeActionPerformed
         try{
             int chooseObject = jTableCurrentRegion.getSelectedRow();
-            gameWorld.cutTree(chooseObject);
+            gameWorld.doAction(chooseObject, new CutTree());
             textEditorGameWorld.updateCurrentRegion();
         }catch (Exception e){
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
@@ -808,7 +815,7 @@ public class Program extends javax.swing.JFrame {
     private void jButtonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuildHouseActionPerformed
         try{
             int chooseObject = jTableCurrentRegion.getSelectedRow();
-            gameWorld.buildHouse(chooseObject);
+            gameWorld.doAction(chooseObject, new BuildHouse());
             textEditorGameWorld.updateCurrentRegion();
         }catch (Exception e){
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
@@ -818,7 +825,7 @@ public class Program extends javax.swing.JFrame {
     private void jButtonBuildFireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuildFireActionPerformed
         try{
             int chooseObject = jTableCurrentRegion.getSelectedRow();
-            gameWorld.buildFire(chooseObject);
+            gameWorld.doAction(chooseObject, new BuildFire());
         }catch (Exception e){
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
         }finally {
@@ -828,21 +835,19 @@ public class Program extends javax.swing.JFrame {
     private void jButtonBuildWellActionPerformed(java.awt.event.ActionEvent evt) {
         try{
             int chooseObject = jTableCurrentRegion.getSelectedRow();
-            gameWorld.buildWell(chooseObject);
+            gameWorld.doAction(chooseObject, new BuildWell());
             textEditorGameWorld.updateCurrentRegion();
         }catch (Exception e){
             JOptionPane.showMessageDialog (null, e.getMessage(), "Oшибка", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
     private void jButtonExitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitGameActionPerformed
         jFrameGame.dispose();
     }//GEN-LAST:event_jButtonExitGameActionPerformed
 
     private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
         try{
-            textEditorGameWorld.setModelMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
+            textEditorGameWorld.setModeMap(gameWorld.getRegions(), gameWorld.getCurrentRegion());
             jDialogMap.setVisible(true);
             jDialogMap.setBounds(100, 100, 655, 560);
             ChangeScreenSize.setLocation(jDialogMap);
@@ -868,7 +873,7 @@ public class Program extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCloseMapActionPerformed
     private void jButtonBagActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            textEditorGameWorld.setModelMap(gameWorld.getPlayer());
+            textEditorGameWorld.setModeBag(gameWorld.getPlayer());
             jDialogBag.setVisible(true);
             jDialogBag.setBounds(100, 100, 570, 470);
             ChangeScreenSize.setLocation(jDialogBag);
@@ -877,14 +882,6 @@ public class Program extends javax.swing.JFrame {
         }
 
     }
-    private void jButtonContinueGameActionPerformed(java.awt.event.ActionEvent evt) {
-        jDialogBeginStory.dispose();
-
-        jDialogChooseRegion.setVisible(true);
-        jDialogChooseRegion.setBounds(0, 100, 645, 399);
-        ChangeScreenSize.setLocation(jDialogChooseRegion);
-    }
-
     private void jButtonItemsOkActionPerformed(java.awt.event.ActionEvent evt) {
         jDialogBag.dispose();
     }
